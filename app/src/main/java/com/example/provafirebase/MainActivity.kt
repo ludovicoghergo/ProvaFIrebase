@@ -36,8 +36,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun openMyNotifications(view: View){
+        val intent = Intent(this, NotificationActivity::class.java)
+        startActivity(intent)
+    }
 
-    fun pippo(view: View){
+    fun logOut(view: View){
             mGoogleSignInClient.signOut().addOnCompleteListener {
                 val intent= Intent(this, LoginScreen::class.java)
                 startActivity(intent)

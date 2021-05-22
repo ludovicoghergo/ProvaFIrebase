@@ -9,32 +9,60 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="42dp">
+        tools:layout_editor_absoluteX="-58dp"
+        tools:layout_editor_absoluteY="-52dp">
+
+        <ImageButton
+            android:id="@+id/btnMynotes"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="372dp"
+            app:layout_constraintEnd_toEndOf="@+id/btnMyaccount"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="@+id/btnMygroup"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            android:onClick="openMyNotifications"/>
 
         <Button
             android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
             android:background="@android:color/black"
             android:foreground="?android:attr/selectableItemBackground"
-            android:onClick="pippo"
+            android:onClick="logOut"
             android:padding="10dp"
             android:text="Logout"
             android:textColor="@android:color/holo_orange_light"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="151dp"
-            tools:layout_editor_absoluteY="615dp" />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="138dp"
-            android:layout_height="135dp"
-            app:layout_constraintBottom_toTopOf="@+id/logout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnMynotes"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/btnMygroup"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="164dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnMyaccount"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <ImageButton
+            android:id="@+id/btnMyaccount"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="164dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
