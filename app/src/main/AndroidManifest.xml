@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProvaFIrebase">
-        <activity android:name=".NotificationActivity"></activity>
+        <activity android:name=".GroupsActivity"></activity>
+        <activity android:name=".AccountActivity" />
+        <activity android:name=".NotificationActivity" />
         <activity android:name=".LoginScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
