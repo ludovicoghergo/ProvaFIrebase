@@ -38,6 +38,13 @@ class LoginScreen : AppCompatActivity() {
 
 
     }
+    //skipLogin
+    fun skipLogin(view: View){
+        SavedPreference.setEmail(this, "Mattia@email.it")
+        SavedPreference.setUsername(this, "Mattia Zito")
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
 
     // signInGoogle() function
      fun  signInGoogle(AndroidView: View){
@@ -86,6 +93,8 @@ class LoginScreen : AppCompatActivity() {
             }
         }
     }
+
+
     override fun onStart() {
         super.onStart()
         if(GoogleSignIn.getLastSignedInAccount(this)!=null){
