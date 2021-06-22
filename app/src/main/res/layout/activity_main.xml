@@ -12,59 +12,82 @@
         tools:layout_editor_absoluteX="-58dp"
         tools:layout_editor_absoluteY="-52dp">
 
-        <ImageButton
-            android:id="@+id/btnMynotes"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="320dp"
-            android:onClick="openMyNotifications"
-            app:layout_constraintEnd_toEndOf="@+id/btnMyaccount"
-            app:layout_constraintHorizontal_bias="0.508"
-            app:layout_constraintStart_toStartOf="@+id/btnMygroup"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
-            android:background="@android:color/black"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:onClick="logOut"
-            android:padding="10dp"
-            android:text="Logout"
-            android:textColor="@android:color/holo_orange_light"
-            android:textSize="20sp"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="413dp"
+            android:layout_height="174dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnMynotes"
-            app:layout_constraintVertical_bias="0.535" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.003"
+            app:srcCompat="@drawable/logo" />
 
         <ImageButton
-            android:id="@+id/btnMygroup"
-            android:layout_width="150dp"
+            android:id="@+id/imageButton2"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="112dp"
+            android:layout_marginVertical="30dp"
             android:onClick="openMyGroups"
-            app:layout_constraintEnd_toStartOf="@+id/btnMyaccount"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton3"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <ImageButton
-            android:id="@+id/btnMyaccount"
-            android:layout_width="150dp"
+            android:id="@+id/imageButton3"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginTop="112dp"
-            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="100dp"
+            android:onClick="openMyNotifications"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="408dp"
+            android:layout_height="150dp"
             android:onClick="openMyAccount"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="187dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:clickable="false"
+            android:text="Account"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton"
+            app:layout_constraintVertical_bias="0.888" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="187dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:text="Groups"
+            android:textAlignment="center"
+            android:textColor="#FAFAFA"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton2"
+            app:layout_constraintVertical_bias="0.783" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

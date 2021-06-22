@@ -46,6 +46,13 @@ class LoginScreen : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun loadCreateGroup(view: View){
+        SavedPreference.setEmail(this, "Mattia@email.it")
+        SavedPreference.setUsername(this, "Mattia Zito")
+        val intent = Intent(this, CreateGroupActivity::class.java)
+        startActivity(intent)
+    }
+
     // signInGoogle() function
      fun  signInGoogle(AndroidView: View){
 
