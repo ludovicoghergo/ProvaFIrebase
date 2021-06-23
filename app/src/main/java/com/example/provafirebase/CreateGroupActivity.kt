@@ -2,6 +2,8 @@ package com.example.provafirebase
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,5 +59,13 @@ class CreateGroupActivity : AppCompatActivity() {
        //
         return lista
 
+    }
+    fun addPerson(view: View){
+        //ricerca della persona nel database
+        //se non esiste toast con errore
+        //se esiste aggiunta alla lista
+    }
+    fun createGroup(view: View){
+        //crea il gruppo e cambia activity
     }
 }
