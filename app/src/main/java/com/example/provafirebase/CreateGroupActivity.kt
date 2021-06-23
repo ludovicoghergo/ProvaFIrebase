@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_create_group.*
+import java.util.ArrayList
 
 class CreateGroupActivity : AppCompatActivity() {
     private val mColumnCount = 1
@@ -28,12 +30,32 @@ class CreateGroupActivity : AppCompatActivity() {
                 viewManager = GridLayoutManager(this, mColumnCount)
                 } }
 
-        viewAdapter = UserViewAdapter(DummyList.getLista())
+        viewAdapter = UserViewAdapter(loadUsers())
 
         view_user.apply {
             layoutManager = viewManager
                     adapter = viewAdapter
         }
+
+    }
+
+    fun loadUsers():ArrayList<DummyList.Utente>{
+        val lista = ArrayList<DummyList.Utente>()
+        var db = FirebaseFirestore.getInstance()
+        db.collection("users").get().addOnSuccessListener {
+                result ->
+            for(document in result) {
+                var nuovo = DummyList.Utente(
+                    document.data.get("first").toString(),
+                    document.data.get("last").toString(),
+                    document.id.toString()
+                )
+                lista.add(nuovo)
+            }
+            viewAdapter.notifyDataSetChanged()
+        }
+       //
+        return lista
 
     }
 }
