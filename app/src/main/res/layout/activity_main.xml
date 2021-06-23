@@ -9,8 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-58dp"
-        tools:layout_editor_absoluteY="-52dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="204dp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -18,9 +18,10 @@
             android:layout_height="174dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.003"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/logo" />
 
         <ImageButton
@@ -29,21 +30,21 @@
             android:layout_height="150dp"
             android:layout_marginVertical="30dp"
             android:onClick="openMyGroups"
-            app:layout_constraintBottom_toTopOf="@+id/imageButton3"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton"
+            tools:layout_editor_absoluteY="393dp"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <ImageButton
             android:id="@+id/imageButton3"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginBottom="100dp"
             android:onClick="openMyNotifications"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="581dp"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <ImageButton
@@ -51,9 +52,12 @@
             android:layout_width="408dp"
             android:layout_height="150dp"
             android:onClick="openMyAccount"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton2"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
