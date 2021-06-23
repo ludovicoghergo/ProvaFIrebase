@@ -27,12 +27,13 @@ class CreateGroupActivity : AppCompatActivity() {
                 } else {
                 viewManager = GridLayoutManager(this, mColumnCount)
                 } }
-        viewAdapter = UserViewAdapter(DummyList.getLista()){
-        }
+
+        viewAdapter = UserViewAdapter(DummyList.getLista())
+
         view_user.apply {
             layoutManager = viewManager
                     adapter = viewAdapter
-                    }
+        }
 
     }
 }

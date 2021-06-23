@@ -8,10 +8,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.componente_utente.view.*
 
 
-class UserViewAdapter(private val mValues: ArrayList<Utente>, private val listener: (Utente) -> Unit) :
+class UserViewAdapter(private val mValues: List<DummyList.Utente>) :
     RecyclerView.Adapter<UserViewAdapter.ViewHolder>() {
-
-
 
     // Provide a reference to the views for each data item
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView)
@@ -21,15 +19,16 @@ class UserViewAdapter(private val mValues: ArrayList<Utente>, private val listen
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.componente_utente, parent, false) as View
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.componente_utente, parent, false) as View
         return ViewHolder(view)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: UserViewAdapter.ViewHolder, position: Int) {
         holder.mView.apply {
-            twutente.text = mValues[position].toString()
-            holder.itemView.setOnClickListener { listener(mValues[position])}
+            twutente.text = mValues[position].firstName
+            //holder.itemView.setOnClickListener { listener(mValues[position])}
         }
 
     }

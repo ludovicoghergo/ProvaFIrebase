@@ -16,10 +16,17 @@ object DummyList {
             result ->
             for(document in result) {
                  var nuovo =  Utente(document.data.get("first").toString(),document.data.get("last").toString(),document.id.toString())
-                Log.d("out", "$nuovo")
+                //Log.d("out", "$nuovo")
                 lista.add(nuovo)
             }
         }
+
+    }
+
+    class Utente(var firstName: String, var lastName: String, var id: String ) {
+
+
+
     }
 
 }
