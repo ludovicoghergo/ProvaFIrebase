@@ -93,11 +93,9 @@ class CreateGroupActivity : AppCompatActivity() {
     }
     fun createGroup(view: View){
         //crea il gruppo e cambia activity
+        var listaMembri = ArrayList<HashMap<String,HashMap<String,Any>>>()
         var db = FirebaseFirestore.getInstance()
-        val data = hashMapOf(
-            "membri" to hashMapOf<String,Any>(),
-            "name" to "NOME TESTO GRUPPO"
-        )
+
 
         val membroHash = hashMapOf(
             "spese" to hashMapOf<String,DocumentReference>(),
@@ -107,7 +105,8 @@ class CreateGroupActivity : AppCompatActivity() {
         val campoMembro = hashMapOf(
             "membro0" to membroHash
         )
-        data.put("membri",campoMembro)
+        listaMembri.add(campoMembro)
+
 
         for(i in 0..listaMemb.size-1){
             val membroHash = hashMapOf(
@@ -118,8 +117,14 @@ class CreateGroupActivity : AppCompatActivity() {
             val campoMembro = hashMapOf(
                 "membro"+i+1 to membroHash
             )
-            data.put("membri",campoMembro)
+            listaMembri.add(campoMembro)
         }
+
+        val data = hashMapOf(
+            "membri" to listaMembri,
+            "name" to "NOME TESTO GRUPPO"
+        )
+
         db.collection("groups")
             .add(data)
             .addOnSuccessListener { documentReference -> Log.d("SUCCESS", "DocumentSnapshot added with ID: " + documentReference.id) }

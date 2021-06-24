@@ -3,13 +3,14 @@ package com.example.provafirebase
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.google.firebase.firestore.DocumentReference
 
 object SavedPreference {
 
 
     const val EMAIL= "email"
     const val USERNAME="username"
-    const val REFERENCE= ""
+     var REFERENCE: DocumentReference = TODO()
 
     private  fun getSharedPreference(ctx: Context?): SharedPreferences? {
         return PreferenceManager.getDefaultSharedPreferences(ctx)
@@ -45,16 +46,10 @@ object SavedPreference {
         context
     )?.getString(USERNAME,"")
 
-    fun setReference(context: Context, id: String) {
-        editor(
-            context,
-            REFERENCE,
-            id
-        )
+    fun setReference(context: Context, id: DocumentReference) {
+        REFERENCE = id
     }
-    fun getReference(context: Context) = getSharedPreference(
-        context
-    )?.getString(REFERENCE,"")
+
 
 
 }
