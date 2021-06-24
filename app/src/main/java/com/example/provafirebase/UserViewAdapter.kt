@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.componente_utente.view.*
 
 class UserViewAdapter(private var mValues: List<DummyList.Utente>) :
     RecyclerView.Adapter<UserViewAdapter.ViewHolder>() {
-
     // Provide a reference to the views for each data item
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView)
 
@@ -33,7 +32,4 @@ class UserViewAdapter(private var mValues: List<DummyList.Utente>) :
 
     }
 
-    public fun updateData(newVal:List<DummyList.Utente>){
-        this.mValues = newVal
-    }
 }

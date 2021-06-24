@@ -90,7 +90,7 @@ class LoginScreen : AppCompatActivity() {
 
                 db.collection("users")
                         .add(user)
-                        .addOnSuccessListener { documentReference -> Log.d("SUCCESS", "DocumentSnapshot added with ID: " + documentReference.id) }
+                        .addOnSuccessListener { documentReference ->  SavedPreference.setReference(this, documentReference.id )}
                         .addOnFailureListener { e -> Log.w("ERROR", "Error adding document", e) }
 
                 SavedPreference.setEmail(this, account.email.toString())
