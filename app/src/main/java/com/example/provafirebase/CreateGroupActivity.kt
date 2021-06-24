@@ -31,6 +31,7 @@ class CreateGroupActivity : AppCompatActivity() {
     private var listaRef =  ArrayList<DocumentReference>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_group)
         querytext = findViewById(R.id.editTextTextPersonName3)
@@ -50,6 +51,36 @@ class CreateGroupActivity : AppCompatActivity() {
             layoutManager = viewManager
                     adapter = viewAdapter
         }
+
+        var db = FirebaseFirestore.getInstance()
+        var usersRef = db.collection("users")
+        var email=SavedPreference.EMAIL
+        var filter = usersRef.whereEqualTo("email",email)
+        try {
+            filter.get().addOnSuccessListener {
+                    result ->
+                for(document in result) {
+                    var docRef = document.reference
+                    var nuovo = DummyList.Utente(
+                        document.data.get("first").toString(),
+                        document.data.get("last").toString(),
+                        document.id.toString()
+                    )
+                    listaMemb.add(nuovo)
+                    listaRef.add(docRef)
+                }
+
+                viewAdapter = UserViewAdapter(listaMemb)
+
+                view_user.apply {
+                    layoutManager = viewManager
+                    adapter = viewAdapter
+                }
+            }
+        } catch(e:FirebaseException){
+            Toast.makeText(getApplicationContext(), "Errore utente", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
@@ -96,26 +127,14 @@ class CreateGroupActivity : AppCompatActivity() {
         var listaMembri = ArrayList<HashMap<String,HashMap<String,Any>>>()
         var db = FirebaseFirestore.getInstance()
 
-
-        val membroHash = hashMapOf(
-            "spese" to hashMapOf<String,DocumentReference>(),
-            "user" to SavedPreference.REFERENCE
-        )
-
-        val campoMembro = hashMapOf(
-            "membro0" to membroHash
-        )
-        listaMembri.add(campoMembro)
-
-
-        for(i in 0..listaMemb.size-1){
+        for(i in 0..listaMemb.size){
             val membroHash = hashMapOf(
                 "spese" to hashMapOf<String,DocumentReference>(),
                 "user" to listaRef.get(i)
             )
 
             val campoMembro = hashMapOf(
-                "membro"+i+1 to membroHash
+                "membro"+(i+1) to membroHash
             )
             listaMembri.add(campoMembro)
         }
