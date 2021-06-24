@@ -2,6 +2,9 @@ package com.example.provafirebase
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +24,9 @@ class CreateGroupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_group)
+
+
+
         if (mColumnCount <= 1) {
             viewManager = LinearLayoutManager(this.applicationContext)
             } else {
@@ -30,7 +36,7 @@ class CreateGroupActivity : AppCompatActivity() {
                 viewManager = GridLayoutManager(this, mColumnCount)
                 } }
 
-        viewAdapter = UserViewAdapter(loadUsers())
+        viewAdapter = UserViewAdapter(loadUsers(""))
 
         view_user.apply {
             layoutManager = viewManager
@@ -39,10 +45,13 @@ class CreateGroupActivity : AppCompatActivity() {
 
     }
 
-    fun loadUsers():ArrayList<DummyList.Utente>{
+    fun loadUsers(s: String):ArrayList<DummyList.Utente>{
         val lista = ArrayList<DummyList.Utente>()
         var db = FirebaseFirestore.getInstance()
-        db.collection("users").get().addOnSuccessListener {
+        var usersRef = db.collection("users")
+        var querytext = s.toString()
+        var filter = usersRef.whereGreaterThanOrEqualTo("first",querytext)
+        filter.get().addOnSuccessListener {
                 result ->
             for(document in result) {
                 var nuovo = DummyList.Utente(
@@ -55,6 +64,7 @@ class CreateGroupActivity : AppCompatActivity() {
             viewAdapter.notifyDataSetChanged()
         }
        //
+        Log.d("out", "$lista")
         return lista
 
     }

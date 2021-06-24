@@ -8,7 +8,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.componente_utente.view.*
 
 
-class UserViewAdapter(private val mValues: List<DummyList.Utente>) :
+class UserViewAdapter(private var mValues: List<DummyList.Utente>) :
     RecyclerView.Adapter<UserViewAdapter.ViewHolder>() {
 
     // Provide a reference to the views for each data item
@@ -31,5 +31,9 @@ class UserViewAdapter(private val mValues: List<DummyList.Utente>) :
             //holder.itemView.setOnClickListener { listener(mValues[position])}
         }
 
+    }
+
+    public fun updateData(newVal:List<DummyList.Utente>){
+        this.mValues = newVal
     }
 }

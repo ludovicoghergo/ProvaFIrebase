@@ -12,17 +12,17 @@
         android:layout_height="127dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415"
+        app:layout_constraintVertical_bias="0.407"
         tools:context=".CreateGroupActivity"
         tools:listitem="@layout/componente_utente" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="314dp"
-        android:layout_height="80dp"
+        android:id="@+id/TextPersonName"
+        android:layout_width="316dp"
+        android:layout_height="70dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
@@ -40,8 +40,8 @@
         android:text="Selezona i membri del tuo gruppo"
         app:layout_constraintBottom_toTopOf="@+id/view_user"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintHorizontal_bias="0.198"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.65" />
+        app:layout_constraintTop_toBottomOf="@+id/TextPersonName"
+        app:layout_constraintVertical_bias="0.625" />
 </androidx.constraintlayout.widget.ConstraintLayout>
