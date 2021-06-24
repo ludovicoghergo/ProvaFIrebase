@@ -86,6 +86,7 @@ class LoginScreen : AppCompatActivity() {
                 val user: MutableMap<String, Any> = HashMap()
                 user["first"] = account.displayName.toString()
                 user["last"] = account.familyName.toString()
+                user["email"] = account.email.toString()
 
                 db.collection("users")
                         .add(user)

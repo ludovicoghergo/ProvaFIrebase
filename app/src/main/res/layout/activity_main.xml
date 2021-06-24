@@ -6,93 +6,64 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageButton
+        android:id="@+id/imageButton2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="204dp">
+        android:layout_height="150dp"
+        android:layout_marginVertical="30dp"
+        android:layout_marginTop="12dp"
+        android:onClick="openMyGroups"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        tools:layout_editor_absoluteX="2dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="413dp"
-            android:layout_height="174dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/logo" />
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="187dp"
+        android:layout_height="30dp"
+        android:text="Groups"
+        android:textAlignment="center"
+        android:textColor="#FAFAFA"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="413dp" />
 
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginVertical="30dp"
-            android:onClick="openMyGroups"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="393dp"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="187dp"
+        android:layout_height="30dp"
+        android:clickable="false"
+        android:text="Account"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="229dp" />
 
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:onClick="openMyNotifications"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="581dp"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="408dp"
+        android:layout_height="150dp"
+        android:onClick="openMyAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="408dp"
-            android:layout_height="150dp"
-            android:onClick="openMyAccount"
-            app:layout_constraintBottom_toTopOf="@+id/imageButton2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="413dp"
+        android:layout_height="174dp"
+        app:srcCompat="@drawable/logo" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="187dp"
-            android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:clickable="false"
-            android:text="Account"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageButton"
-            app:layout_constraintVertical_bias="0.888" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="187dp"
-            android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:text="Groups"
-            android:textAlignment="center"
-            android:textColor="#FAFAFA"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageButton2"
-            app:layout_constraintVertical_bias="0.783" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:onClick="openMyNotifications"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+        tools:layout_editor_absoluteX="2dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
