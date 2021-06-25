@@ -40,9 +40,9 @@ class LoginScreen : AppCompatActivity() {
     }
     //skipLogin
     fun skipLogin(view: View){
-        SavedPreference.setEmail(this, "Mattia@email.it")
-        SavedPreference.setUsername(this, "Mattia Zito")
-        val intent = Intent(this, MainActivity::class.java)
+        SavedPreference.setEmail(this, "adolfo.celi22@gmail.com")
+        SavedPreference.setUsername(this, "Adolfo Celi")
+        val intent = Intent(this, AddSpesa::class.java)
         startActivity(intent)
     }
 

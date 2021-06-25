@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.add_spesa_utente.view.*
 import kotlinx.android.synthetic.main.componente_utente.view.*
 
-
-class UserViewAdapter(private var mValues: List<DummyList.Utente>) :
-    RecyclerView.Adapter<UserViewAdapter.ViewHolder>() {
+class AddSpesaAdapter(private var mValues: List<DummyList.Utente>) :
+    RecyclerView.Adapter<AddSpesaAdapter.ViewHolder>() {
     // Provide a reference to the views for each data item
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView)
 
@@ -18,17 +18,18 @@ class UserViewAdapter(private var mValues: List<DummyList.Utente>) :
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.componente_utente, parent, false)
+            .inflate(R.layout.add_spesa_utente, parent, false)
         return ViewHolder(view)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mView.apply {
-            twutente.text = mValues[position].firstName
+            textView.text = mValues[position].firstName
             //holder.itemView.setOnClickListener { listener(mValues[position])}
         }
 
     }
+
 
 }

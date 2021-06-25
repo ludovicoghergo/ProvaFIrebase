@@ -28,6 +28,7 @@ class CreateGroupActivity : AppCompatActivity() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var querytext : EditText
+    private lateinit var groupName : EditText
     private var listaMemb =  ArrayList<DummyList.Utente>()
     private var listaRef =  ArrayList<DocumentReference>()
 
@@ -35,6 +36,7 @@ class CreateGroupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_group)
         querytext = findViewById(R.id.editTextTextPersonName3)
+        groupName = findViewById(R.id.editTextTextPersonName)
 
         if (mColumnCount <= 1) {
             viewManager = LinearLayoutManager(this.applicationContext)
@@ -119,7 +121,7 @@ class CreateGroupActivity : AppCompatActivity() {
             }
             val data = hashMapOf(
                 "membri" to ListMemb,
-                "name" to "NOME TESTO GRUPPO"
+                "name" to groupName.text.toString()
             )
 
             db.collection("groups")
