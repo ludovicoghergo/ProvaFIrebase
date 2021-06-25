@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.firebase.FirebaseException
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import kotlinx.android.synthetic.main.activity_create_group.*
@@ -103,10 +104,11 @@ class CreateGroupActivity : AppCompatActivity() {
                 "spese" to hashMapOf<String,DocumentReference>(),
                 "user" to result.documents.get(0).reference
             )
+            var user0 = db.document(result.documents.get(0).reference.path)
 
             ListMemb.add(membroHash)
 
-            for(i in 0..listaMemb.size-1){
+            for(i in 0..listaRef.size-1){
                 val membroHash = hashMapOf(
                     "spese" to hashMapOf<String,DocumentReference>(),
                     "user" to listaRef.get(i)
@@ -122,7 +124,14 @@ class CreateGroupActivity : AppCompatActivity() {
 
             db.collection("groups")
                 .add(data)
-                .addOnSuccessListener { documentReference -> Log.d("SUCCESS", "DocumentSnapshot added with ID: " + documentReference.id) }
+                .addOnSuccessListener {
+                        documentReference ->
+                    user0.update("groups",FieldValue.arrayUnion(documentReference.id))
+                    for(i in 0..listaRef.size-1){
+                        var user = db.document(listaRef.get(i).path)
+                        user.update("groups",FieldValue.arrayUnion(documentReference.id))
+                    }
+                }
                 .addOnFailureListener { e -> Log.w("ERROR", "Error adding document", e) }
 
         }
