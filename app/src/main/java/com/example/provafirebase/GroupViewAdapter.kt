@@ -4,13 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.componente_utente.view.*
-import java.util.ArrayList
+import kotlinx.android.synthetic.main.componente_lista_gruppi.view.*
 
-
-class UserViewAdapter(private var mValues: List<DummyList.Utente>) :
-    RecyclerView.Adapter<UserViewAdapter.ViewHolder>() {
+class GroupViewAdapter(private var mValues: List<DummyList.Utente>) :
+    RecyclerView.Adapter<GroupViewAdapter.ViewHolder>() {
     // Provide a reference to the views for each data item
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView)
 
@@ -27,7 +24,7 @@ class UserViewAdapter(private var mValues: List<DummyList.Utente>) :
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mView.apply {
-            twutente.text = mValues[position].firstName
+            group_nameTxt.text = mValues[position].firstName
             //holder.itemView.setOnClickListener { listener(mValues[position])}
         }
 

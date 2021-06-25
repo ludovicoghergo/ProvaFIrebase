@@ -23,10 +23,6 @@ object DummyList {
 
     }
 
-    class Utente(var firstName: String, var lastName: String, var id: String ) {
-
-
-
-    }
+    class Utente(var firstName: String, var lastName: String, var id: String ) {}
 
 }

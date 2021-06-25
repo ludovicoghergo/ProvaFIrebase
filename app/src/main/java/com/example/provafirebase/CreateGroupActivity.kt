@@ -44,7 +44,7 @@ class CreateGroupActivity : AppCompatActivity() {
                 viewManager = GridLayoutManager(this, mColumnCount)
                 } }
 
-        viewAdapter = UserViewAdapter(loadUsers(""))
+        viewAdapter = UserViewAdapter(loadUsers())
 
         view_user.apply {
             layoutManager = viewManager
@@ -53,7 +53,7 @@ class CreateGroupActivity : AppCompatActivity() {
 
     }
 
-    fun loadUsers(s: String):ArrayList<DummyList.Utente>{
+    fun loadUsers():ArrayList<DummyList.Utente>{
         val lista = ArrayList<DummyList.Utente>()
         return lista
     }
@@ -93,36 +93,39 @@ class CreateGroupActivity : AppCompatActivity() {
     }
     fun createGroup(view: View){
         //crea il gruppo e cambia activity
+        var ListMemb = ArrayList<HashMap<String,Any>>()
         var db = FirebaseFirestore.getInstance()
-        val data = hashMapOf(
-            "membri" to hashMapOf<String,Any>(),
-            "name" to "NOME TESTO GRUPPO"
-        )
+        var filter = db.collection("users").whereEqualTo("email",SavedPreference.getEmail(this))
 
-        val membroHash = hashMapOf(
-            "spese" to hashMapOf<String,DocumentReference>(),
-            "user" to SavedPreference.REFERENCE
-        )
-
-        val campoMembro = hashMapOf(
-            "membro0" to membroHash
-        )
-        data.put("membri",campoMembro)
-
-        for(i in 0..listaMemb.size-1){
+        filter.get().addOnSuccessListener {
+            result ->
             val membroHash = hashMapOf(
                 "spese" to hashMapOf<String,DocumentReference>(),
-                "user" to listaRef.get(i)
+                "user" to result.documents.get(0).reference
             )
 
-            val campoMembro = hashMapOf(
-                "membro"+i+1 to membroHash
+            ListMemb.add(membroHash)
+
+            for(i in 0..listaMemb.size-1){
+                val membroHash = hashMapOf(
+                    "spese" to hashMapOf<String,DocumentReference>(),
+                    "user" to listaRef.get(i)
+                )
+
+
+                ListMemb.add(membroHash)
+            }
+            val data = hashMapOf(
+                "membri" to ListMemb,
+                "name" to "NOME TESTO GRUPPO"
             )
-            data.put("membri",campoMembro)
+
+            db.collection("groups")
+                .add(data)
+                .addOnSuccessListener { documentReference -> Log.d("SUCCESS", "DocumentSnapshot added with ID: " + documentReference.id) }
+                .addOnFailureListener { e -> Log.w("ERROR", "Error adding document", e) }
+
         }
-        db.collection("groups")
-            .add(data)
-            .addOnSuccessListener { documentReference -> Log.d("SUCCESS", "DocumentSnapshot added with ID: " + documentReference.id) }
-            .addOnFailureListener { e -> Log.w("ERROR", "Error adding document", e) }
-    }
+
+        }
 }
