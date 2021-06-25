@@ -21,12 +21,14 @@
         android:id="@+id/textView4"
         android:layout_width="187dp"
         android:layout_height="30dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="60dp"
         android:text="Groups"
         android:textAlignment="center"
         android:textColor="#FAFAFA"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="413dp" />
+        app:layout_constraintStart_toStartOf="@+id/imageButton2"
+        app:layout_constraintTop_toTopOf="@+id/imageButton2" />
 
     <TextView
         android:id="@+id/textView2"
