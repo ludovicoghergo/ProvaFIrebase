@@ -2,8 +2,6 @@ package com.example.provafirebase
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -128,10 +126,10 @@ class CreateGroupActivity : AppCompatActivity() {
                 .add(data)
                 .addOnSuccessListener {
                         documentReference ->
-                    user0.update("groups",FieldValue.arrayUnion(documentReference.id))
+                    user0.update("groups",FieldValue.arrayUnion(documentReference))
                     for(i in 0..listaRef.size-1){
                         var user = db.document(listaRef.get(i).path)
-                        user.update("groups",FieldValue.arrayUnion(documentReference.id))
+                        user.update("groups",FieldValue.arrayUnion(documentReference))
                     }
                 }
                 .addOnFailureListener { e -> Log.w("ERROR", "Error adding document", e) }

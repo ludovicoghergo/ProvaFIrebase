@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openMyGroups(view: View){
-        val intent = Intent(this, CreateGroupActivity::class.java)
+        val intent = Intent(this, GroupsActivity::class.java)
         startActivity(intent)
     }
 

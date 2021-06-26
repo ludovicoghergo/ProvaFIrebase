@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.componente_lista_gruppi.view.*
 
-class GroupViewAdapter(private var mValues: List<DummyList.Utente>) :
+class GroupViewAdapter(private var mValues: ArrayList<String>) :
     RecyclerView.Adapter<GroupViewAdapter.ViewHolder>() {
     // Provide a reference to the views for each data item
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView)
@@ -17,14 +17,14 @@ class GroupViewAdapter(private var mValues: List<DummyList.Utente>) :
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.componente_utente, parent, false)
+            .inflate(R.layout.componente_lista_gruppi, parent, false)
         return ViewHolder(view)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mView.apply {
-            group_nameTxt.text = mValues[position].firstName
+            group_nameTxt.text = mValues[position]
             //holder.itemView.setOnClickListener { listener(mValues[position])}
         }
 
