@@ -2,6 +2,7 @@ package com.example.provafirebase
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,7 +35,8 @@ class AddSpesa : AppCompatActivity() {
                 viewManager = StaggeredGridLayoutManager(mColumnCount, staggeredGridOrientation)
             } else {
                 viewManager = GridLayoutManager(this, mColumnCount)
-            } }
+            }
+        }
         viewAdapter = AddSpesaAdapter(loadUserFromGroup())
 
         elenco_utenti.apply {
@@ -46,35 +48,47 @@ class AddSpesa : AppCompatActivity() {
     private fun loadUserFromGroup(): List<DummyList.Utente> {
         var db = FirebaseFirestore.getInstance()
         var groupRef = db.collection("groups")
+        var userRef = db.collection("users")
 
         var listaMemb = java.util.ArrayList<DummyList.Utente>()
         var listaRef = java.util.ArrayList<DocumentReference>()
         var listMembri = java.util.ArrayList<HashMap<String, Any>>()
 
-        var filter = groupRef.whereEqualTo("name","NomeGruppo")
+        var filter = groupRef.whereEqualTo("name", "NomeGruppo")
         try {
-            filter.get().addOnSuccessListener {
-                    result ->
-                for(document in result) {
+            filter.get().addOnSuccessListener { result ->
+                for (document in result) {
                     var docRef = document.reference
-                    listMembri = document.data.get("membri") as
-                    for (membro in listMembri){
+                    listMembri = document.get("membri") as java.util.ArrayList<HashMap<String, Any>>
+
+                    for (membro in listMembri) {
+                        listaRef.add(membro.get("user") as DocumentReference)
+
+                    }
+                    Log.d("a", "a")
+                }
+                for (ref in listaRef) {
+                    var filterUser = db.document(ref.path)
+                    filterUser.get().addOnSuccessListener { result2 ->
                         var nuovo = DummyList.Utente(
-                            document.data.get("first").toString(),
-                            document.data.get("last").toString(),
-                            document.id.toString()
+                            result2.get("first").toString(),
+                            result2.get("last").toString(),
+                            result2.id.toString()
                         )
                         listaMemb.add(nuovo)
-                        listaRef.add(docRef)
+                        viewAdapter = AddSpesaAdapter(listaMemb)
+                        elenco_utenti.apply {
+                            layoutManager = viewManager
+                            adapter = viewAdapter
+                        }
                     }
-
                 }
 
             }
-        } catch(e: FirebaseException){
-            Toast.makeText(getApplicationContext(), "Errore", Toast.LENGTH_SHORT).show();
-        }
+        } catch (e: FirebaseException) {
+            Toast.makeText(applicationContext, "Errore", Toast.LENGTH_SHORT).show()
 
+        }
         return listaMemb
     }
 }
