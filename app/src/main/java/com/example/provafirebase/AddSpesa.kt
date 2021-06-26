@@ -45,12 +45,12 @@ class AddSpesa : AppCompatActivity() {
         }
     }
 
-    private fun loadUserFromGroup(): List<DummyList.Utente> {
+    private fun loadUserFromGroup(): List<AddSpesaAdapter.UtenteConSpesa> {
         var db = FirebaseFirestore.getInstance()
         var groupRef = db.collection("groups")
         var userRef = db.collection("users")
 
-        var listaMemb = java.util.ArrayList<DummyList.Utente>()
+        var listaMemb = java.util.ArrayList<AddSpesaAdapter.UtenteConSpesa>()
         var listaRef = java.util.ArrayList<DocumentReference>()
         var listMembri = java.util.ArrayList<HashMap<String, Any>>()
 
@@ -70,10 +70,11 @@ class AddSpesa : AppCompatActivity() {
                 for (ref in listaRef) {
                     var filterUser = db.document(ref.path)
                     filterUser.get().addOnSuccessListener { result2 ->
-                        var nuovo = DummyList.Utente(
+                        var nuovo = AddSpesaAdapter.UtenteConSpesa(
                             result2.get("first").toString(),
                             result2.get("last").toString(),
-                            result2.id.toString()
+                            result2.id.toString(),
+                            0F
                         )
                         listaMemb.add(nuovo)
                         viewAdapter = AddSpesaAdapter(listaMemb)
