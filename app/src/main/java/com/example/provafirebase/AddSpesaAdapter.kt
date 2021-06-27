@@ -2,6 +2,7 @@ package com.example.provafirebase
 
 import android.annotation.SuppressLint
 import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.add_spesa_utente.view.*
 import kotlinx.android.synthetic.main.componente_utente.view.*
+import java.lang.Exception
 
 class AddSpesaAdapter(private var mValues: List<UtenteConSpesa>) :
     RecyclerView.Adapter<AddSpesaAdapter.ViewHolder>() {
@@ -27,15 +29,42 @@ class AddSpesaAdapter(private var mValues: List<UtenteConSpesa>) :
     }
 
     // Replace the contents of a view (invoked by the layout manager)
-    @SuppressLint("SetTextI18n")
+    //@SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         holder.mView.apply {
+            val textWatcher = object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    Log.d("c","b")
+                    try {
+                        mValues[position].spesa=  editTextNumber.text.toString().toFloat()
+                    }catch (e: Exception){
+                        Log.d("errore null", "errore null")
+                    }
+                    for (utente in mValues){
+                        Log.d("lista","${utente.spesa}")
+                    }
+
+
+                }
+            }
             textView.text = mValues[position].firstName
-            editTextNumber.setText((mValues[position].spesa).toString())
             holder.itemView.setOnClickListener { listener(mValues[position])}
-            holder.itemView.setCha { listener(mValues[position])}
+            editTextNumber.addTextChangedListener(textWatcher)
+
         }
 
+
+    }
+
+    public fun getLista(): List<UtenteConSpesa> {
+        return mValues;
     }
 
     private fun listener(utenteConSpesa: AddSpesaAdapter.UtenteConSpesa) {
@@ -46,3 +75,5 @@ class AddSpesaAdapter(private var mValues: List<UtenteConSpesa>) :
 
 
 }
+
+
