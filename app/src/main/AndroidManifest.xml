@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProvaFIrebase">
+        <activity
+            android:name=".SpecificGroupActivity"
+            android:label="@string/title_activity_specific_group"
+            android:theme="@style/Theme.ProvaFIrebase.NoActionBar"></activity>
+        <activity android:name=".singleGroup.SingleGroupActivity" />
         <activity android:name=".AddSpesa" />
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".GroupsActivity" />
@@ -22,6 +27,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

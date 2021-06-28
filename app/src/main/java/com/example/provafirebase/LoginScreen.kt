@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.provafirebase.singleGroup.SingleGroupActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -42,7 +43,7 @@ class LoginScreen : AppCompatActivity() {
     fun skipLogin(view: View){
         SavedPreference.setEmail(this, "adolfo.celi22@gmail.com")
         SavedPreference.setUsername(this, "Adolfo Celi")
-        val intent = Intent(this, AddSpesa::class.java)
+        val intent = Intent(this, SingleGroupActivity::class.java)
         startActivity(intent)
     }
 

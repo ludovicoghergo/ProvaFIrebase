@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".singleGroup.SingleGroupActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:text="Elenco Partecipanti"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista_membri"
+        android:layout_width="match_parent"
+        android:layout_height="238dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:listitem="@layout/single_group_utente" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/black"
+        android:text="Elenco Spese"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/lista_membri"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista_spese"
+        android:layout_width="409dp"
+        android:layout_height="216dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        tools:listitem="@layout/single_group_spesa" />
+
+    <Button
+        android:id="@+id/aggiungiSpesa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="aggiungiSpesa"
+        android:text="AggiungiSpesa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lista_spese"
+        app:layout_constraintVertical_bias="0.288" />
+</androidx.constraintlayout.widget.ConstraintLayout>
