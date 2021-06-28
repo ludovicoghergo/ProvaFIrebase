@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.DocumentReference
 import kotlinx.android.synthetic.main.add_spesa_utente.view.*
 import kotlinx.android.synthetic.main.componente_utente.view.*
 import java.lang.Exception
@@ -71,7 +72,7 @@ class AddSpesaAdapter(private var mValues: List<UtenteConSpesa>) :
         Log.d("a","${utenteConSpesa.spesa}")
     }
 
-    class UtenteConSpesa(var firstName: String, var lastName: String, var id: String , var spesa: Float)
+    class UtenteConSpesa(var firstName: String, var lastName: String, var id: DocumentReference , var spesa: Float)
 
 
 }

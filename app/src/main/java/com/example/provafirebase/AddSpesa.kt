@@ -93,7 +93,7 @@ class AddSpesa : AppCompatActivity() {
                         var nuovo = AddSpesaAdapter.UtenteConSpesa(
                             result2.get("first").toString(),
                             result2.get("last").toString(),
-                            result2.id.toString(),
+                            result2.reference,
                             0F
                         )
                         listaMemb.add(nuovo)
@@ -114,4 +114,4 @@ class AddSpesa : AppCompatActivity() {
     }
 }
 class DbSpesa(var nomeSpesa: String, var totale: Float, var debiti: ArrayList<DbDebito>)
-class DbDebito(var daPagare: Float, var pagato: Float, var refUtente: String)
+class DbDebito(var daPagare: Float, var pagato: Float, var refUtente: DocumentReference)
