@@ -1,17 +1,15 @@
-package com.example.provafirebase
+package com.example.provafirebase.singleGroup
 
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.provafirebase.singleGroup.SingleGroupActivity
+import com.example.provafirebase.R
 import kotlinx.android.synthetic.main.componente_lista_gruppi.view.*
+import kotlinx.android.synthetic.main.single_group_utente.view.*
 
-class GroupViewAdapter(private var mValues: ArrayList<DummyList.Group>) :
-    RecyclerView.Adapter<GroupViewAdapter.ViewHolder>() {
+class SingleGroupUtenteAdapter (private var mValues: ArrayList<Utente>) :
+    RecyclerView.Adapter<SingleGroupUtenteAdapter.ViewHolder>() {
     // Provide a reference to the views for each data item
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView)
 
@@ -21,20 +19,15 @@ class GroupViewAdapter(private var mValues: ArrayList<DummyList.Group>) :
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.componente_lista_gruppi, parent, false)
+            .inflate(R.layout.single_group_utente, parent, false)
         return ViewHolder(view)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mView.apply {
-            group_nameTxt.text = mValues[position].groupName
+            nomeUtente.text = mValues.get(position).firstName
             //holder.itemView.setOnClickListener { listener(mValues[position])}
-        }
-        holder.itemView.btShowGroup.setOnClickListener(){
-            val intent = Intent(holder.mView.context, SingleGroupActivity::class.java)
-            intent.putExtra("docref",mValues[position].docRef.path)
-            startActivity(holder.mView.context,intent,null)
         }
 
     }

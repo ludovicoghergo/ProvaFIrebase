@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProvaFIrebase">
-        <activity android:name=".GroupInfoActivity"></activity>
+        <activity
+            android:name=".SpecificGroupActivity"
+            android:label="@string/title_activity_specific_group"
+            android:theme="@style/Theme.ProvaFIrebase.NoActionBar"></activity>
+        <activity android:name=".singleGroup.SingleGroupActivity" />
         <activity android:name=".AddSpesa" />
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".GroupsActivity" />
