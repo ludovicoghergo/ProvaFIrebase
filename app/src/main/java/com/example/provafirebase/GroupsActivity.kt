@@ -43,8 +43,8 @@ class GroupsActivity : AppCompatActivity() {
         var listGroup = ArrayList<DocumentReference>()
         var listNameGroup = ArrayList<DummyList.Group>()
 
-
-        var filter = usersRef.whereEqualTo("email","mattia@pippo.it")
+        var email = SavedPreference.getEmail(this)
+        var filter = usersRef.whereEqualTo("email",email)
         try {
             var pippo = filter.get()
             filter.get().addOnSuccessListener {

@@ -106,6 +106,10 @@ class LoginScreen : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if(GoogleSignIn.getLastSignedInAccount(this)!=null){
+            var email = GoogleSignIn.getLastSignedInAccount(this)?.email.toString()
+            var name = GoogleSignIn.getLastSignedInAccount(this)?.displayName.toString()
+            SavedPreference.setEmail(this, email)
+            SavedPreference.setUsername(this, name)
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
