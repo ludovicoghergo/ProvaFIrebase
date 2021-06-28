@@ -46,29 +46,30 @@ class GroupsActivity : AppCompatActivity() {
         var email = SavedPreference.getEmail(this)
         var filter = usersRef.whereEqualTo("email",email)
         try {
-            var pippo = filter.get()
             filter.get().addOnSuccessListener {
                     result ->
                 for(document in result) {
-                    var pippo = document.get("groups")
-                    listGroup = document.get("groups") as ArrayList<DocumentReference>
-                    for (group in listGroup){
-                        db.document(group.path).get().addOnSuccessListener {
-                            result ->
-                            var nuovo = DummyList.Group(
-                                result.get("name").toString(),
-                                result.reference)
-                            listNameGroup.add(nuovo)
+                    if(document.get("groups") != null){
+                        listGroup = document.get("groups") as ArrayList<DocumentReference>
+                        for (group in listGroup){
+                            db.document(group.path).get().addOnSuccessListener {
+                                    result ->
+                                var nuovo = DummyList.Group(
+                                    result.get("name").toString(),
+                                    result.reference)
+                                listNameGroup.add(nuovo)
 
-                            viewAdapter = GroupViewAdapter(listNameGroup)
+                                viewAdapter = GroupViewAdapter(listNameGroup)
 
-                            view_groups.apply {
-                                layoutManager = viewManager
-                                adapter = viewAdapter
+                                view_groups.apply {
+                                    layoutManager = viewManager
+                                    adapter = viewAdapter
+                                }
                             }
-                        }
 
+                        }
                     }
+
 
                 }
             }

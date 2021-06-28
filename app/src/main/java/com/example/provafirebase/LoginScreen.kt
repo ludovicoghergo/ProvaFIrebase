@@ -15,6 +15,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -88,6 +89,7 @@ class LoginScreen : AppCompatActivity() {
                 user["first"] = account.displayName.toString()
                 user["last"] = account.familyName.toString()
                 user["email"] = account.email.toString()
+                user["groups"] = ArrayList<DocumentReference>()
 
                 db.collection("users")
                         .add(user)
