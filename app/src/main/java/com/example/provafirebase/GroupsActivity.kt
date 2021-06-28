@@ -1,27 +1,24 @@
 package com.example.provafirebase
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.firebase.FirebaseException
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_create_group.*
 import kotlinx.android.synthetic.main.activity_groups.*
-import java.util.ArrayList
+import java.util.*
 
 class GroupsActivity : AppCompatActivity() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +37,11 @@ class GroupsActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun loadGroups(): ArrayList<String> {
+    fun loadGroups(): ArrayList<DummyList.Group> {
         var db = FirebaseFirestore.getInstance()
         var usersRef = db.collection("users")
         var listGroup = ArrayList<DocumentReference>()
-        var listNameGroup = ArrayList<String>()
+        var listNameGroup = ArrayList<DummyList.Group>()
 
 
         var filter = usersRef.whereEqualTo("email","mattia@pippo.it")
@@ -58,8 +55,10 @@ class GroupsActivity : AppCompatActivity() {
                     for (group in listGroup){
                         db.document(group.path).get().addOnSuccessListener {
                             result ->
-                            var pippo = result.get("name")
-                            listNameGroup.add(result.get("name").toString())
+                            var nuovo = DummyList.Group(
+                                result.get("name").toString(),
+                                result.reference)
+                            listNameGroup.add(nuovo)
 
                             viewAdapter = GroupViewAdapter(listNameGroup)
 

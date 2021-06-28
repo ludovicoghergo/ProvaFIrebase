@@ -94,31 +94,26 @@ class CreateGroupActivity : AppCompatActivity() {
     }
     fun createGroup(view: View){
         //crea il gruppo e cambia activity
-        var ListMemb = ArrayList<HashMap<String,Any>>()
+        var ListMemb = ArrayList<DocumentReference>()
+        var ListSpese = ArrayList<DocumentReference>()
         var db = FirebaseFirestore.getInstance()
         var filter = db.collection("users").whereEqualTo("email",SavedPreference.getEmail(this))
 
         filter.get().addOnSuccessListener {
             result ->
-            val membroHash = hashMapOf(
-                "spese" to hashMapOf<String,DocumentReference>(),
-                "user" to result.documents.get(0).reference
-            )
-            var user0 = db.document(result.documents.get(0).reference.path)
+            val membroHash = result.documents.get(0).reference
+
+            var user0 = db.document(membroHash.path)
 
             ListMemb.add(membroHash)
 
             for(i in 0..listaRef.size-1){
-                val membroHash = hashMapOf(
-                    "spese" to hashMapOf<String,DocumentReference>(),
-                    "user" to listaRef.get(i)
-                )
-
-
+                val membroHash =  listaRef.get(i)
                 ListMemb.add(membroHash)
             }
             val data = hashMapOf(
                 "membri" to ListMemb,
+                "spese" to ListSpese,
                 "name" to groupName.text.toString()
             )
 

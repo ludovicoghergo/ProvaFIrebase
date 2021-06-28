@@ -1,12 +1,15 @@
 package com.example.provafirebase
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.componente_lista_gruppi.view.*
 
-class GroupViewAdapter(private var mValues: ArrayList<String>) :
+class GroupViewAdapter(private var mValues: ArrayList<DummyList.Group>) :
     RecyclerView.Adapter<GroupViewAdapter.ViewHolder>() {
     // Provide a reference to the views for each data item
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView)
@@ -24,8 +27,13 @@ class GroupViewAdapter(private var mValues: ArrayList<String>) :
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mView.apply {
-            group_nameTxt.text = mValues[position]
+            group_nameTxt.text = mValues[position].groupName
             //holder.itemView.setOnClickListener { listener(mValues[position])}
+        }
+        holder.itemView.btShowGroup.setOnClickListener(){
+            val intent = Intent(holder.mView.context, CreateGroupActivity::class.java)
+            intent.putExtra("docref",mValues[position].docRef.path)
+            startActivity(holder.mView.context,intent,null)
         }
 
     }

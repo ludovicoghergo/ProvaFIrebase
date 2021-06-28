@@ -1,6 +1,7 @@
 package com.example.provafirebase
 
 import android.util.Log
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.ArrayList
 
@@ -24,5 +25,6 @@ object DummyList {
     }
 
     class Utente(var firstName: String, var lastName: String, var id: String ) {}
+    class Group(var groupName: String, var docRef:DocumentReference){}
 
 }
