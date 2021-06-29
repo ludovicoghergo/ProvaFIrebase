@@ -40,7 +40,7 @@ class SingleGroupActivity : AppCompatActivity() {
         viewManagerUtenti = LinearLayoutManager(this.applicationContext)
         viewManagerSpese = LinearLayoutManager(this.applicationContext)
 
-        viewAdapterSpese = SingleGroupSpesaAdapter(speseData)
+        viewAdapterSpese = SingleGroupSpesaAdapter(speseData, gruppo)
         viewAdapterUtenti = SingleGroupUtenteAdapter(membriData)
 
         lista_membri.apply {
@@ -104,9 +104,10 @@ class SingleGroupActivity : AppCompatActivity() {
                     speseData.add(DbSpesa(
                         documentSpesa.get("nomeSpesa").toString(),
                         documentSpesa.get("totale").toString().toFloat(),
-                        debiti
+                        debiti,
+                        documentSpesa.id
                     ))
-                    viewAdapterSpese = SingleGroupSpesaAdapter(speseData)
+                    viewAdapterSpese = SingleGroupSpesaAdapter(speseData, gruppo)
                     lista_spese.apply {
                         layoutManager = viewManagerSpese
                         adapter = viewAdapterSpese
@@ -119,6 +120,6 @@ class SingleGroupActivity : AppCompatActivity() {
 
     }
 }
-class DbSpesa(var nomeSpesa: String, var totale: Float, var debiti: ArrayList<DbDebito>)
+class DbSpesa(var nomeSpesa: String, var totale: Float, var debiti: ArrayList<DbDebito>, var id: String)
 class DbDebito(var daPagare: Float, var pagato: Float, var refUtente: DocumentReference)
-class Utente(var firstName: String, var lastName: String, var id: DocumentReference ) {}
+class Utente(var firstName: String, var lastName: String, var id: DocumentReference )

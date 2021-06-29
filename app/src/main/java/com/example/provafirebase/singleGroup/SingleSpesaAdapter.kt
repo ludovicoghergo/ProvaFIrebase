@@ -1,18 +1,15 @@
 package com.example.provafirebase.singleGroup
 
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provafirebase.R
-import kotlinx.android.synthetic.main.componente_lista_gruppi.view.*
-import kotlinx.android.synthetic.main.single_group_utente.view.*
+import com.google.firebase.firestore.DocumentReference
+import kotlinx.android.synthetic.main.single_spesa_component.view.*
 
-class SingleGroupUtenteAdapter (private var mValues: ArrayList<Utente>) :
-    RecyclerView.Adapter<SingleGroupUtenteAdapter.ViewHolder>() {
+class SingleSpesaAdapter (private var mValues: ArrayList<UtenteAndSpesa>) :
+    RecyclerView.Adapter<SingleSpesaAdapter.ViewHolder>() {
     // Provide a reference to the views for each data item
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView)
 
@@ -22,19 +19,24 @@ class SingleGroupUtenteAdapter (private var mValues: ArrayList<Utente>) :
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.single_group_utente, parent, false)
+            .inflate(R.layout.single_spesa_component, parent, false)
         return ViewHolder(view)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mView.apply {
-            nomeUtente.text = mValues.get(position).firstName
-
+            nome.text = (mValues.get(position).firstName)+" "+mValues.get(position).lastName
+            pagato.text=mValues.get(position).pagato.toString()
+            da_pagare.text=mValues.get(position).daPagare.toString()
         }
 
     }
 
 
 
+
+
 }
+
+class UtenteAndSpesa (var firstName: String, var lastName: String, var id: DocumentReference, var daPagare: Float, var pagato: Float)
