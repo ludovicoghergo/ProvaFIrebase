@@ -36,6 +36,8 @@ class CreateGroupActivity : AppCompatActivity() {
         querytext = findViewById(R.id.editTextTextPersonName3)
         groupName = findViewById(R.id.editTextTextPersonName)
 
+        supportActionBar?.hide()
+
         if (mColumnCount <= 1) {
             viewManager = LinearLayoutManager(this.applicationContext)
             } else {

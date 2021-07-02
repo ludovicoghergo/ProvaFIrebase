@@ -11,6 +11,8 @@ class AccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account)
 
+        supportActionBar?.hide()
+
         val name: TextView = findViewById(R.id.textView5)
         name.text = SavedPreference.getUsername(this)
 

@@ -6,19 +6,176 @@
     android:layout_height="match_parent"
     tools:context=".GroupsActivity">
 
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar6"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_gravity="bottom"
+        app:backgroundTint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:subtitleTextColor="#191717" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/newsLayout"
+        android:layout_width="62dp"
+        android:layout_height="53dp"
+        android:onClick="openMyNotifications"
+        app:layout_constraintEnd_toStartOf="@+id/GroupLayout"
+        app:layout_constraintStart_toStartOf="@id/bottomAppBar6"
+        app:layout_constraintTop_toTopOf="@id/bottomAppBar6">
+
+        <ImageView
+            android:id="@+id/news_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/outline_notifications_white_24dp" />
+
+        <TextView
+            android:id="@+id/news_lbl"
+            android:layout_width="0dp"
+            android:layout_height="29dp"
+            android:text="News"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/news_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/news_icon6"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/outline_notifications_white_24dp" />
+
+    <TextView
+        android:id="@+id/news_lbl6"
+        android:layout_width="0dp"
+        android:layout_height="29dp"
+        android:text="News"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/news_icon" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/AccountLayout"
+        android:layout_width="62dp"
+        android:layout_height="53dp"
+        android:onClick="openMyAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/GroupLayout"
+        app:layout_constraintTop_toTopOf="@id/bottomAppBar6">
+
+        <ImageView
+            android:id="@+id/acc_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/outline_account_circle_white_24dp" />
+
+        <TextView
+            android:id="@+id/acc_lbl"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:text="Me"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/acc_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/acc_icon6"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/outline_account_circle_white_24dp" />
+
+    <TextView
+        android:id="@+id/acc_lbl6"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:text="Me"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acc_icon" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/GroupLayout"
+        android:layout_width="62dp"
+        android:layout_height="53dp"
+        android:onClick="openMyGroups"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/bottomAppBar6"
+        app:layout_constraintTop_toTopOf="@id/bottomAppBar6">
+
+        <ImageView
+            android:id="@+id/groups_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/outline_group_white_24dp" />
+
+        <TextView
+            android:id="@+id/groups_lbl"
+            android:layout_width="0dp"
+            android:layout_height="29dp"
+            android:text="Groups"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/groups_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:onClick="openCreateGroups"
         android:text="Create Group"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.894"
-        android:onClick="openCreateGroups"
-        />
+        app:layout_constraintVertical_bias="0.861" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/view_groups"
@@ -28,4 +185,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/welcome_txt"
+        android:layout_width="214dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="44dp"
+        android:text="Hi !"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="218dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="20dp"
+        android:onClick="openCreateGroups"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_groups" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:srcCompat="@drawable/baseline_group_add_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="128dp"
+        android:layout_height="23dp"
+        android:text="add a new group"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.533" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,10 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:text="Elenco Partecipanti"
+        android:textAlignment="center"
         android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +36,10 @@
         android:layout_marginTop="10dp"
         android:background="@color/black"
         android:text="Elenco Spese"
+        android:textAlignment="center"
         android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/lista_membri"
         tools:layout_editor_absoluteX="16dp" />
 
@@ -51,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="aggiungiSpesa"
-        android:text="AggiungiSpesa"
+        android:text="Aggiungi Spesa"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

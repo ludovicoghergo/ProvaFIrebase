@@ -25,6 +25,8 @@ class GroupsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_groups)
         viewManager = LinearLayoutManager(this.applicationContext)
         viewAdapter = GroupViewAdapter(loadGroups())
+        welcome_txt.text = "Hi "+SavedPreference.getUsername(this)+"!\n Here's your groups"
+        supportActionBar?.hide()
 
         view_groups.apply {
             layoutManager = viewManager
