@@ -46,7 +46,7 @@ class LoginScreen : AppCompatActivity() {
     fun skipLogin(view: View){
         SavedPreference.setEmail(this, "adolfo.celi22@gmail.com")
         SavedPreference.setUsername(this, "Adolfo Celi")
-        val intent = Intent(this, SingleGroupActivity::class.java)
+        val intent = Intent(this, NotificationActivity::class.java)
         startActivity(intent)
     }
 
@@ -92,6 +92,7 @@ class LoginScreen : AppCompatActivity() {
                 user["last"] = account.familyName.toString()
                 user["email"] = account.email.toString()
                 user["groups"] = ArrayList<DocumentReference>()
+                user["notifiche"] = ArrayList<DocumentReference>()
 
                 db.collection("users")
                         .add(user)

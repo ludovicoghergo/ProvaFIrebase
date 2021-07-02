@@ -25,10 +25,10 @@ class CreateGroupActivity : AppCompatActivity() {
     private val staggeredGridOrientation = StaggeredGridLayoutManager.VERTICAL
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var querytext : EditText
-    private lateinit var groupName : EditText
-    private var listaMemb =  ArrayList<DummyList.Utente>()
-    private var listaRef =  ArrayList<DocumentReference>()
+    private lateinit var querytext: EditText
+    private lateinit var groupName: EditText
+    private var listaMemb = ArrayList<DummyList.Utente>()
+    private var listaRef = ArrayList<DocumentReference>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,38 +40,38 @@ class CreateGroupActivity : AppCompatActivity() {
 
         if (mColumnCount <= 1) {
             viewManager = LinearLayoutManager(this.applicationContext)
-            } else {
+        } else {
             if (enableStaggeredGrid) {
                 viewManager = StaggeredGridLayoutManager(mColumnCount, staggeredGridOrientation)
-                } else {
+            } else {
                 viewManager = GridLayoutManager(this, mColumnCount)
-                } }
+            }
+        }
 
         viewAdapter = UserViewAdapter(loadUsers())
 
         view_user.apply {
             layoutManager = viewManager
-                    adapter = viewAdapter
+            adapter = viewAdapter
         }
 
     }
 
-    fun loadUsers():ArrayList<DummyList.Utente>{
+    fun loadUsers(): ArrayList<DummyList.Utente> {
         val lista = ArrayList<DummyList.Utente>()
         return lista
     }
 
-    fun addPerson(view: View){
+    fun addPerson(view: View) {
         var db = FirebaseFirestore.getInstance()
         var usersRef = db.collection("users")
         var groupRef = db.collection("groups")
 
         Log.d("out", "$querytext.text")
-        var filter = usersRef.whereEqualTo("email",querytext.text.toString())
+        var filter = usersRef.whereEqualTo("email", querytext.text.toString())
         try {
-            filter.get().addOnSuccessListener {
-                    result ->
-                for(document in result) {
+            filter.get().addOnSuccessListener { result ->
+                for (document in result) {
                     var docRef = document.reference
                     var nuovo = DummyList.Utente(
                         document.data.get("first").toString(),
@@ -89,28 +89,28 @@ class CreateGroupActivity : AppCompatActivity() {
                     adapter = viewAdapter
                 }
             }
-         } catch(e:FirebaseException){
+        } catch (e: FirebaseException) {
             Toast.makeText(getApplicationContext(), "Errore utente", Toast.LENGTH_SHORT).show();
-         }
+        }
 
     }
-    fun createGroup(view: View){
+
+    fun createGroup(view: View) {
         //crea il gruppo e cambia activity
         var ListMemb = ArrayList<DocumentReference>()
         var ListSpese = ArrayList<DocumentReference>()
         var db = FirebaseFirestore.getInstance()
-        var filter = db.collection("users").whereEqualTo("email",SavedPreference.getEmail(this))
+        var filter = db.collection("users").whereEqualTo("email", SavedPreference.getEmail(this))
 
-        filter.get().addOnSuccessListener {
-            result ->
+        filter.get().addOnSuccessListener { result ->
             val membroHash = result.documents.get(0).reference
 
             var user0 = db.document(membroHash.path)
 
             ListMemb.add(membroHash)
 
-            for(i in 0..listaRef.size-1){
-                val membroHash =  listaRef.get(i)
+            for (i in 0..listaRef.size - 1) {
+                val membroHash = listaRef.get(i)
                 ListMemb.add(membroHash)
             }
             val data = hashMapOf(
@@ -121,17 +121,24 @@ class CreateGroupActivity : AppCompatActivity() {
 
             db.collection("groups")
                 .add(data)
-                .addOnSuccessListener {
-                        documentReference ->
-                    user0.update("groups",FieldValue.arrayUnion(documentReference))
-                    for(i in 0..listaRef.size-1){
+                .addOnSuccessListener { documentReference ->
+                    user0.update("groups", FieldValue.arrayUnion(documentReference))
+                    for (i in 0..listaRef.size - 1) {
                         var user = db.document(listaRef.get(i).path)
-                        user.update("groups",FieldValue.arrayUnion(documentReference))
+                        user.update("groups", FieldValue.arrayUnion(documentReference))
+                        var notifica = Notifica(listaRef.get(i).path, "sei stato aggiunto al gruppo "+groupName.text.toString())
+                        db.collection("notifiche").add(notifica).addOnSuccessListener {
+                            documentNotificaRef ->
+                            user.update("notifiche", FieldValue.arrayUnion(documentNotificaRef))
+                        }
                     }
                 }
                 .addOnFailureListener { e -> Log.w("ERROR", "Error adding document", e) }
 
         }
 
-        }
+
+
+    }
+
 }

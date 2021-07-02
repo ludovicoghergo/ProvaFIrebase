@@ -68,6 +68,14 @@ class AddSpesa : AppCompatActivity() {
                 Log.d("db", "datiInseriti")
                 groupRef.update("spese",FieldValue.arrayUnion(documentReference))
 
+                for(utente in listaSpesa){
+                    var user = db.document(utente.id.path)
+                    var notifica = Notifica(utente.id.path, "è stata aggiunta la nuova spesa " + nomeSpesa )
+                    db.collection("notifiche").add(notifica).addOnSuccessListener {
+                            documentNotificaRef ->
+                            user.update("notifiche", FieldValue.arrayUnion(documentNotificaRef))
+                    }
+                }
         }
 
     }
