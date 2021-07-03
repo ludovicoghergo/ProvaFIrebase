@@ -44,7 +44,7 @@ class AddSpesaAdapter(private var mValues: List<UtenteConSpesa>) :
                 override fun afterTextChanged(s: Editable?) {
                     Log.d("c","b")
                     try {
-                        mValues[position].spesa=  editTextNumber.text.toString().toFloat()
+                        mValues[position].spesa=  userInvoice.text.toString().toFloat()
                     }catch (e: Exception){
                         Log.d("errore null", "errore null")
                     }
@@ -57,7 +57,7 @@ class AddSpesaAdapter(private var mValues: List<UtenteConSpesa>) :
             }
             textView.text = mValues[position].firstName
             holder.itemView.setOnClickListener { listener(mValues[position])}
-            editTextNumber.addTextChangedListener(textWatcher)
+            userInvoice.addTextChangedListener(textWatcher)
 
         }
 

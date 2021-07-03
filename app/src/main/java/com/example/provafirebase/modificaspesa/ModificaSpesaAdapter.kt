@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.provafirebase.AddSpesaAdapter
 import com.example.provafirebase.R
 import com.google.firebase.firestore.DocumentReference
 import kotlinx.android.synthetic.main.add_spesa_utente.view.*

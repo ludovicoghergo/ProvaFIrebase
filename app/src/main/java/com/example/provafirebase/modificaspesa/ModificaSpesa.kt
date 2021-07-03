@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -29,7 +30,7 @@ class ModificaSpesa : AppCompatActivity() {
         spesa = intent.getStringExtra("spesaref").toString()
         Log.d("msg","$gruppo")
         Log.d("msg","$spesa")
-        viewManager= LinearLayoutManager(this.applicationContext)
+        viewManager = LinearLayoutManager(this.applicationContext,RecyclerView.HORIZONTAL,false)
         viewAdapter = ModificaSpesaAdapter(data)
 
 

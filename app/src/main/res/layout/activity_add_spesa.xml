@@ -6,28 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".AddSpesa">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Nome Spesa"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/invoiceName"
+        android:layout_width="147dp"
+        android:layout_height="54dp"
+        android:hint="Invoice's name"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="64dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/elenco_utenti"
         android:layout_width="337dp"
         android:layout_height="249dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+        tools:layout_editor_absoluteY="147dp"
         tools:listitem="@layout/add_spesa_utente" />
 
     <Button
@@ -42,15 +43,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/elenco_utenti" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="123dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="32dp"
-        android:ems="10"
-        android:hint="Totale"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/elenco_utenti"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName2" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/totalInvoice"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:hint="Total invoice"
+        tools:layout_editor_absoluteX="227dp"
+        tools:layout_editor_absoluteY="62dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

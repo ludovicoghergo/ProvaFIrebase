@@ -6,67 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".CreateGroupActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/view_user"
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="445dp"
+        android:layout_height="167dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="366dp"
-        android:layout_height="126dp"
+        android:layout_height="61dp"
+        android:hint="Group's name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlinedTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="213dp"
+        android:layout_height="59dp"
         android:layout_marginTop="24dp"
+        android:hint="Member's email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
-        tools:context=".CreateGroupActivity"
-        tools:listitem="@layout/componente_utente" />
+        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField2"
+        app:startIconDrawable="@drawable/outline_search_grey_800_24dp">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="379dp"
-        android:layout_height="79dp"
-        android:layout_marginTop="120dp"
-        android:ems="10"
-        android:hint="Group Name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.656"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="24dp"
-        android:onClick="addPerson"
-        android:text="Add"
-        app:layout_constraintBottom_toTopOf="@+id/view_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="258dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="48dp"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#00F4EFEF"
         android:onClick="createGroup"
         android:text="Create Group"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_user" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:onClick="addPerson"
+        app:layout_constraintBottom_toBottomOf="@+id/outlinedTextField"
+        app:layout_constraintStart_toEndOf="@+id/outlinedTextField"
+        app:layout_constraintTop_toTopOf="@+id/outlinedTextField"
+        app:layout_constraintVertical_bias="0.517"
+        app:srcCompat="@drawable/baseline_group_add_black_24dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/view_user"
+        android:layout_width="370dp"
+        android:layout_height="324dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField"
+        tools:context=".CreateGroupActivity"
+        tools:listitem="@layout/componente_utente" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

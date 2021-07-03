@@ -26,7 +26,7 @@ class SingleSpesaAdapter (private var mValues: ArrayList<UtenteAndSpesa>) :
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mView.apply {
-            nome.text = (mValues.get(position).firstName)+" "+mValues.get(position).lastName
+            nome.text = (mValues.get(position).firstName)
             pagato.text=mValues.get(position).pagato.toString()
             da_pagare.text=mValues.get(position).daPagare.toString()
         }

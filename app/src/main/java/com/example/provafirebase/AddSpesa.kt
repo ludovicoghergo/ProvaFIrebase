@@ -52,8 +52,8 @@ class AddSpesa : AppCompatActivity() {
     fun creaSpesa(view: View){
         //crea il gruppo e cambia activity
         var listaSpesa = viewAdapter.getLista()
-        var totale = (findViewById(R.id.editTextTextPersonName4) as EditText).text.toString().toFloat()
-        var nomeSpesa = (findViewById(R.id.editTextTextPersonName2) as EditText).text.toString()
+        var totale = (findViewById(R.id.totalInvoice) as EditText).text.toString().toFloat()
+        var nomeSpesa = (findViewById(R.id.invoiceName) as EditText).text.toString()
         var debiti = ArrayList<DbDebito>()
         var dbSpesa = DbSpesa(nomeSpesa, totale, debiti)
         for(utente in listaSpesa){
