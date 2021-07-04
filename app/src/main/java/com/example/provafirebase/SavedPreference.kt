@@ -10,6 +10,7 @@ object SavedPreference {
     const val EMAIL= "email"
     const val USERNAME="username"
 
+
     private  fun getSharedPreference(ctx: Context?): SharedPreferences? {
         return PreferenceManager.getDefaultSharedPreferences(ctx)
     }
@@ -39,6 +40,8 @@ object SavedPreference {
             username
         )
     }
+
+
 
     fun getUsername(context: Context) = getSharedPreference(
         context

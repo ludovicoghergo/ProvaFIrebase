@@ -8,14 +8,13 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.provafirebase.AddSpesa
-import com.example.provafirebase.AddSpesaAdapter
+import com.example.provafirebase.*
 import com.example.provafirebase.DummyList.db
-import com.example.provafirebase.NotificationActivity
-import com.example.provafirebase.R
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue
 import kotlinx.android.synthetic.main.activity_create_group.*
 import kotlinx.android.synthetic.main.activity_single_group.*
+import java.lang.reflect.Field
 
 class SingleGroupActivity : AppCompatActivity() {
     private lateinit var viewAdapterUtenti: SingleGroupUtenteAdapter
@@ -56,6 +55,86 @@ class SingleGroupActivity : AppCompatActivity() {
         loadSpeseAndMembri()
 
 
+    }
+
+    fun leaveGroup(view: View){
+        var groupRef = db.document(gruppo)
+        var usersRef = db.collection("users")
+        var email = SavedPreference.getEmail(this)
+        //elimino utente dal gruppo
+        usersRef.whereEqualTo("email",email).get().addOnSuccessListener {
+            document ->
+            for (doc in document){
+                groupRef.update("membri", FieldValue.arrayRemove(doc.reference))
+                //elimino gruppo dall'utente
+                db.document(doc.reference.path).update("groups", FieldValue.arrayRemove(groupRef))
+                //elimino le spese
+                groupRef.get().addOnSuccessListener {
+                    doc2 ->
+                    var spese = doc2.get("spese") as ArrayList<DocumentReference>
+                    for (spesa in spese){
+                        db.document(spesa.path).get().addOnSuccessListener {
+                            docSpesa ->
+                            var debiti = docSpesa.get("debiti") as ArrayList<HashMap<String, Any>>
+                            for (debito in debiti){
+                                if ((debito.get("refUtente") as DocumentReference).path.equals(doc.reference.path)){
+                                    db.document(spesa.path).update("debiti", FieldValue.arrayRemove(debito))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    fun rimuoviUtente(view: View){
+        var groupRef = db.document(gruppo)
+        var usersRef = db.collection("users")
+        //email dell'utente da eliminare
+        var email = ""
+        //elimino utente dal gruppo
+        usersRef.whereEqualTo("email",email).get().addOnSuccessListener {
+                document ->
+            for (doc in document){
+                groupRef.update("membri", FieldValue.arrayRemove(doc.reference))
+                //elimino gruppo dall'utente
+                db.document(doc.reference.path).update("groups", FieldValue.arrayRemove(groupRef))
+                //elimino le spese
+                groupRef.get().addOnSuccessListener {
+                        doc2 ->
+                    var spese = doc2.get("spese") as ArrayList<DocumentReference>
+                    for (spesa in spese){
+                        db.document(spesa.path).get().addOnSuccessListener {
+                                docSpesa ->
+                            var debiti = docSpesa.get("debiti") as ArrayList<HashMap<String, Any>>
+                            for (debito in debiti){
+                                if ((debito.get("refUtente") as DocumentReference).path.equals(doc.reference.path)){
+                                    db.document(spesa.path).update("debiti", FieldValue.arrayRemove(debito))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun aggiungiUtente(view: View){
+        //email dell'utente da aggiungere
+        var email = ""
+        var groupRef = db.document(gruppo)
+        var usersRef = db.collection("users")
+        //elimino utente dal gruppo
+        usersRef.whereEqualTo("email",email).get().addOnSuccessListener {
+                document ->
+            for (doc in document){
+                groupRef.update("membri", FieldValue.arrayUnion(doc.reference))
+                db.document(doc.reference.path).update("groups", FieldValue.arrayUnion(groupRef))
+            }
+
+        }
     }
 
     fun aggiungiSpesa(view: View){

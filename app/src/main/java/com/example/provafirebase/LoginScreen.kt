@@ -101,6 +101,7 @@ class LoginScreen : AppCompatActivity() {
 
                 SavedPreference.setEmail(this, account.email.toString())
                 SavedPreference.setUsername(this, account.displayName.toString())
+
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
