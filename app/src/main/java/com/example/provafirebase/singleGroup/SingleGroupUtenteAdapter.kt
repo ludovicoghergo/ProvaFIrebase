@@ -19,11 +19,13 @@ class SingleGroupUtenteAdapter (private var mValues: ArrayList<Utente>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.single_group_utente, parent, false)
+
         return ViewHolder(view)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         holder.mView.apply {
             twutente.text = mValues.get(position).firstName
 

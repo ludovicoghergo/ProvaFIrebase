@@ -10,11 +10,10 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#D0000000"
         android:gravity="center_vertical"
-        android:text="Elenco Partecipanti"
+        android:text="Team's members"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,11 +33,10 @@
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="#D0000000"
         android:gravity="center_vertical"
-        android:text="Elenco Spese"
+        android:text="Invoices"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,19 +51,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         tools:listitem="@layout/single_group_spesa" />
-
-    <Button
-        android:id="@+id/aggiungiSpesa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="aggiungiSpesa"
-        android:text="Aggiungi Spesa"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.548"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lista_spese"
-        app:layout_constraintVertical_bias="0.767" />
 
     <TextView
         android:id="@+id/textView4"

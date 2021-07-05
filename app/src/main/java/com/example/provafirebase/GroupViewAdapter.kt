@@ -5,9 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provafirebase.singleGroup.SingleGroupActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_groups.*
 import kotlinx.android.synthetic.main.componente_lista_gruppi.view.*
 
 class GroupViewAdapter(private var mValues: ArrayList<DummyList.Group>) :
@@ -31,10 +37,44 @@ class GroupViewAdapter(private var mValues: ArrayList<DummyList.Group>) :
             group_nameTxt.text = mValues[position].groupName
             //holder.itemView.setOnClickListener { listener(mValues[position])}
         }
-        holder.itemView.btShowGroup.setOnClickListener(){
+        holder.itemView.btShowGroup.setOnClickListener() {
             val intent = Intent(holder.mView.context, SingleGroupActivity::class.java)
-            intent.putExtra("docref",mValues[position].docRef.path)
-            startActivity(holder.mView.context,intent,null)
+            intent.putExtra("docref", mValues[position].docRef.path)
+            startActivity(holder.mView.context, intent, null)
+        }
+        holder.itemView.del_icon.setOnClickListener() {
+            MaterialAlertDialogBuilder(holder.mView.context)
+                .setTitle("Delete Group")
+                .setMessage("Once deleted a group it cannot be recovered. \nAre you sure?")
+                .setNeutralButton("Cancel") { dialog, which ->
+                    // Respond to neutral button press
+                }
+                .setPositiveButton("Yes") { dialog, which ->
+                    var db = FirebaseFirestore.getInstance()
+                    var email = SavedPreference.getEmail(holder.mView.context)
+                    var filter = db.collection("users").whereEqualTo("email", email)
+
+                    db.document(mValues[position].docRef.path).delete().addOnSuccessListener {
+                        filter.get().addOnSuccessListener { result ->
+                            for (document in result) {
+                                    document.reference.update(
+                                        "groups",
+                                        FieldValue.arrayRemove(mValues[position].docRef)
+                                    )
+                                    Toast.makeText(
+                                        holder.mView.context,
+                                        "Group Has been deleted!",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+
+                            }
+
+                        }
+
+                    }
+                }
+                .show()
         }
 
     }

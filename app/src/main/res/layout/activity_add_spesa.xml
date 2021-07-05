@@ -6,15 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".AddSpesa">
 
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/invoiceName"
-        android:layout_width="147dp"
-        android:layout_height="54dp"
+        android:id="@+id/outlinedTextField2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="40dp"
         android:hint="Invoice's name"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="64dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/invoiceName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -22,38 +27,48 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/elenco_utenti"
-        android:layout_width="337dp"
-        android:layout_height="249dp"
+        android:layout_width="384dp"
+        android:layout_height="355dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="147dp"
+        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField1"
         tools:listitem="@layout/add_spesa_utente" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:backgroundTint="#00FFFFFF"
+        android:foregroundTint="#00FFFFFF"
         android:onClick="creaSpesa"
         android:text="Crea Spesa"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#000000"
+        app:iconTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/elenco_utenti" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/totalInvoice"
-        android:layout_width="147dp"
+        android:id="@+id/outlinedTextField1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:hint="Total invoice"
-        tools:layout_editor_absoluteX="227dp"
-        tools:layout_editor_absoluteY="62dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:hint="Invoice's name"
+        app:layout_constraintStart_toEndOf="@+id/outlinedTextField2"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/totalInvoice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
