@@ -5,9 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provafirebase.R
+import androidx.fragment.app.FragmentTransaction
+import com.example.provafirebase.invoicesFragment
 import kotlinx.android.synthetic.main.single_group_spesa.view.*
 
 class SingleGroupSpesaAdapter (private var mValues: ArrayList<DbSpesa>, private var groupRef: String) :
@@ -31,10 +35,21 @@ class SingleGroupSpesaAdapter (private var mValues: ArrayList<DbSpesa>, private 
             nomeSpesa.text = mValues.get(position).nomeSpesa
             totaleSpesa.text=" = " + mValues.get(position).totale.toString()
             holder.itemView.setOnClickListener {
+                /*
                 val intent = Intent(holder.mView.context, SingleSpesa::class.java)
                 intent.putExtra("docRef",groupRef)
                 intent.putExtra("spesaRef", mValues.get(position).id)
                 ContextCompat.startActivity(holder.mView.context, intent, null)
+                 */
+                //
+                val activity =  holder.mView.context as AppCompatActivity
+                val invoiceFrag = invoicesFragment.newInstance((mValues.get(position).id.toString()),"")
+                with(activity.supportFragmentManager.beginTransaction()){
+                    replace(R.id.fragmentContainerView,invoiceFrag)
+                    commit()
+                }
+
+
             }
         }
 

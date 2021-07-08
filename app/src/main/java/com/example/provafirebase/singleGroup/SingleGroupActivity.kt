@@ -42,11 +42,6 @@ class SingleGroupActivity : AppCompatActivity() {
         viewAdapterSpese = SingleGroupSpesaAdapter(speseData, gruppo)
         viewAdapterUtenti = SingleGroupUtenteAdapter(membriData)
 
-        lista_membri.apply {
-            layoutManager = viewManagerUtenti
-            adapter = viewAdapterUtenti
-        }
-
         lista_spese.apply {
             layoutManager = viewManagerSpese
             adapter = viewAdapterSpese
@@ -163,12 +158,7 @@ class SingleGroupActivity : AppCompatActivity() {
                         documentMembro.get("last").toString(),
                         documentMembro.reference
                     ))
-                    Log.d("membri","${membriData.toString()}")
-                    viewAdapterUtenti = SingleGroupUtenteAdapter(membriData)
-                    lista_membri.apply {
-                        layoutManager = viewManagerUtenti
-                        adapter = viewAdapterUtenti
-                    }
+
 
                 }
             }
