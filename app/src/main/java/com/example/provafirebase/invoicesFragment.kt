@@ -1,17 +1,23 @@
 package com.example.provafirebase
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provafirebase.modificaspesa.ModificaSpesa
 import com.example.provafirebase.singleGroup.SingleSpesaAdapter
 import com.example.provafirebase.singleGroup.UtenteAndSpesa
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_invoices.*
@@ -59,12 +65,23 @@ class invoicesFragment : Fragment() {
         recSpesa.layoutManager = viewManager
         recSpesa.adapter = viewAdapter
 
+        val newPayment = view_new.findViewById<TextView>(R.id.newPay_txt)
+        val newDebt = view_new.findViewById<TextView>(R.id.newDebt_txt)
+
+        newPayment.setOnClickListener(){
+            val newFragment = NewDebtFragment()
+            newFragment.arguments = this.arguments
+            getFragmentManager()?.let { newFragment.show(it, "change") }
+        }
+
         if(arguments != null) {
             spesa = this.param1.toString()
             loadSpeseAndMembri()
         }
         return view_new
     }
+
+
 
     companion object {
         /**
@@ -86,12 +103,15 @@ class invoicesFragment : Fragment() {
             }
     }
 
+
+
     fun modificaSpesa(view: View){
         val intent = Intent(this.activity?.applicationContext, ModificaSpesa::class.java)
         intent.putExtra("docref", gruppo)
         intent.putExtra("spesaref", spesa)
         startActivity(intent)
     }
+
 
     private fun loadSpeseAndMembri(){
         var db = FirebaseFirestore.getInstance()

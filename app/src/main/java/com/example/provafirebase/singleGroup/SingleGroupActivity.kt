@@ -27,6 +27,7 @@ class SingleGroupActivity : AppCompatActivity() {
     var membriData = ArrayList<Utente>()
     var speseData = ArrayList<DbSpesa>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_group)
@@ -51,6 +52,8 @@ class SingleGroupActivity : AppCompatActivity() {
 
 
     }
+
+
 
     fun leaveGroup(view: View){
         var groupRef = db.document(gruppo)
