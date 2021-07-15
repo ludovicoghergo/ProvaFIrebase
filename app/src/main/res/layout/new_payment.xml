@@ -11,13 +11,13 @@
         android:layout_width="213dp"
         android:layout_height="59dp"
         android:layout_marginTop="12dp"
-        android:hint="Debt's import"
+        android:hint="Payment's import"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/new_debt"
+            android:id="@+id/new_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <AutoCompleteTextView
-            android:id="@+id/menu_debt"
+            android:id="@+id/menu_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none" />

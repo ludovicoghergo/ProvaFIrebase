@@ -31,7 +31,7 @@ class CreateGroupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_group)
-        querytext = findViewById(R.id.newdebt)
+        querytext = findViewById(R.id.new_debt)
         groupName = findViewById(R.id.editTextTextPersonName)
 
         supportActionBar?.hide()

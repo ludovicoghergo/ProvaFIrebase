@@ -68,8 +68,14 @@ class invoicesFragment : Fragment() {
         val newPayment = view_new.findViewById<TextView>(R.id.newPay_txt)
         val newDebt = view_new.findViewById<TextView>(R.id.newDebt_txt)
 
-        newPayment.setOnClickListener(){
+        newDebt.setOnClickListener(){
             val newFragment = NewDebtFragment()
+            newFragment.arguments = this.arguments
+            getFragmentManager()?.let { newFragment.show(it, "change") }
+        }
+
+        newPayment.setOnClickListener(){
+            val newFragment = NewPaymentFragment()
             newFragment.arguments = this.arguments
             getFragmentManager()?.let { newFragment.show(it, "change") }
         }

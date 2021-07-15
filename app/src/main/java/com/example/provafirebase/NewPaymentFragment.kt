@@ -13,12 +13,16 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.example.provafirebase.UtenteSel
+import com.example.provafirebase.DbDebitoNew
 import kotlinx.android.synthetic.main.activity_single_group.*
+import kotlin.math.max
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class NewDebtFragment : DialogFragment() {
+class NewPaymentFragment : DialogFragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var spesa: String? = null
@@ -44,7 +48,7 @@ class NewDebtFragment : DialogFragment() {
             }
     }
 
-    fun updateMember(usRef: DocumentReference,debt:Float){
+    fun updateMember(usRef: DocumentReference,payment:Float){
         val db = FirebaseFirestore.getInstance()
         spesa = arguments?.get("param1").toString()
         val dbSpesaRef = db.document("spese/"+spesa)
@@ -55,13 +59,13 @@ class NewDebtFragment : DialogFragment() {
             for (prova in debiti){
                 val utenteRef = (prova.get("refUtente") as DocumentReference)
                     if(utenteRef.equals(usRef)){
-                        val paid = prova.get("pagato").toString().toFloat()
+                        var paid = prova.get("pagato").toString().toFloat()
                         var tobepaid = prova.get("daPagare").toString().toFloat()
-                        tobepaid = tobepaid + debt
-                        val nuovo = DbDebitoNew(tobepaid as Float, paid,utenteRef)
+                        tobepaid = max(tobepaid - payment,0.toFloat())
+                        paid = paid + payment
+                        val nuovo = DbDebitoNew(tobepaid, paid,utenteRef)
                         dbSpesaRef.update("debiti", FieldValue.arrayRemove(prova))
                         dbSpesaRef.update("debiti", FieldValue.arrayUnion(nuovo))
-                        dbSpesaRef.update("totale",documentSpesa["totale"].toString().toFloat()+debt)
                     }
 
             }
@@ -103,9 +107,9 @@ class NewDebtFragment : DialogFragment() {
 
             val items = getMembers()
             val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
-            val binding = inflater.inflate(R.layout.new_debt, null)
-            binding.findViewById<AutoCompleteTextView>(R.id.menu_debt).setAdapter(adapter)
-            var selector = binding.findViewById<AutoCompleteTextView>(R.id.menu_debt)
+            val binding = inflater.inflate(R.layout.new_payment, null)
+            binding.findViewById<AutoCompleteTextView>(R.id.menu_payment).setAdapter(adapter)
+            var selector = binding.findViewById<AutoCompleteTextView>(R.id.menu_payment)
 
             selector.setOnItemClickListener { parent, view, position, id ->
                 selUser = adapter.getItem(position)!!
@@ -117,8 +121,8 @@ class NewDebtFragment : DialogFragment() {
                 .setPositiveButton("confirm",
                     DialogInterface.OnClickListener { dialog, id ->
                         // sign in the user ...
-                        var inputDebt = binding.findViewById<TextInputEditText>(R.id.new_debt)
-                        var debt = inputDebt.text.toString().toFloat()
+                        var inputPayment = binding.findViewById<TextInputEditText>(R.id.new_payment)
+                        var debt = inputPayment.text.toString().toFloat()
                         updateMember(selUser.UserRef,debt)
                         Toast.makeText(this.context, "ciao", Toast.LENGTH_SHORT).show()
                     })
@@ -131,9 +135,4 @@ class NewDebtFragment : DialogFragment() {
 
     }
 }
-class DbDebitoNew(var daPagare: Float, var pagato: Float, var refUtente: DocumentReference)
-class UtenteSel(var name: String,var UserRef: DocumentReference){
-    override fun toString(): String {
-        return name
-    }
-}
+
