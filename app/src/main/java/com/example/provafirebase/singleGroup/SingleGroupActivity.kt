@@ -153,7 +153,7 @@ class SingleGroupActivity : AppCompatActivity() {
             actionbar!!.title = document.get("name").toString()
             membriRef = document.get("membri") as ArrayList<DocumentReference>
             for(membroRef in membriRef){
-                var dbMembroRef = db.document(membroRef.path)
+                val dbMembroRef = db.document(membroRef.path)
                 dbMembroRef.get().addOnSuccessListener {
                     documentMembro ->
                     membriData.add(Utente(

@@ -14,9 +14,7 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
 import kotlinx.android.synthetic.main.activity_create_group.*
-import java.lang.Exception
 import java.util.ArrayList
 
 class CreateGroupActivity : AppCompatActivity() {
@@ -33,7 +31,7 @@ class CreateGroupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_group)
-        querytext = findViewById(R.id.editTextTextPersonName3)
+        querytext = findViewById(R.id.newdebt)
         groupName = findViewById(R.id.editTextTextPersonName)
 
         supportActionBar?.hide()

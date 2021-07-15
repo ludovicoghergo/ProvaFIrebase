@@ -105,19 +105,23 @@ class invoicesFragment : Fragment() {
 
 
 
-    fun modificaSpesa(view: View){
-        val intent = Intent(this.activity?.applicationContext, ModificaSpesa::class.java)
-        intent.putExtra("docref", gruppo)
-        intent.putExtra("spesaref", spesa)
-        startActivity(intent)
-    }
+   fun updateInvoice(){
+       val db = FirebaseFirestore.getInstance()
+       val dbSpesaRef = db.document("spese/"+spesa)
+
+       dbSpesaRef.get().addOnSuccessListener {
+               documentSpesa ->
+           var debiti = documentSpesa.get("debiti") as ArrayList<HashMap<String,Any>>
+           for (debt in debiti){
+           }
+       }
+
+   }
 
 
     private fun loadSpeseAndMembri(){
         var db = FirebaseFirestore.getInstance()
-
         var membriRef = ArrayList<DocumentReference>()
-
         var dbSpesaRef = db.document("spese/"+spesa)
         dbSpesaRef.get().addOnSuccessListener {
                 documentSpesa ->

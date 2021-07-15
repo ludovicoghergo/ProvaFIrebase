@@ -12,7 +12,9 @@ import androidx.fragment.app.DialogFragment
 import com.example.provafirebase.singleGroup.*
 import com.example.provafirebase.singleGroup.DbDebito
 import com.example.provafirebase.singleGroup.DbSpesa
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_single_group.*
 private const val ARG_PARAM1 = "param1"
@@ -23,6 +25,7 @@ class NewDebtFragment : DialogFragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var spesa: String? = null
+    private lateinit var selUser : UtenteSel
 
     companion object {
         /**
@@ -44,9 +47,33 @@ class NewDebtFragment : DialogFragment() {
             }
     }
 
-    fun getMembers(): ArrayList<String>{
+    fun updateMember(usRef: DocumentReference,debt:Float){
         val db = FirebaseFirestore.getInstance()
-        val members = ArrayList<String>()
+        spesa = arguments?.get("param1").toString()
+        val dbSpesaRef = db.document("spese/"+spesa)
+
+        dbSpesaRef.get().addOnSuccessListener {
+                documentSpesa ->
+            val debiti = documentSpesa.get("debiti") as ArrayList<HashMap<String,Any>>
+            for (prova in debiti){
+                val utenteRef = (prova.get("refUtente") as DocumentReference)
+                    if(utenteRef.equals(usRef)){
+                        val paid = prova.get("pagato").toString().toFloat()
+                        var tobepaid = prova.get("daPagare").toString().toFloat()
+                        tobepaid = tobepaid + debt
+                        val nuovo = DbDebitoNew(tobepaid as Float, paid,utenteRef)
+                        dbSpesaRef.update("debiti", FieldValue.arrayRemove(prova))
+                        dbSpesaRef.update("debiti", FieldValue.arrayUnion(nuovo))
+                    }
+
+            }
+        }
+
+    }
+
+    fun getMembers(): ArrayList<UtenteSel>{
+        val db = FirebaseFirestore.getInstance()
+        val members = ArrayList<UtenteSel>()
         spesa = arguments?.get("param1").toString()
 
         val dbSpesaRef = db.document("spese/"+spesa)
@@ -57,7 +84,12 @@ class NewDebtFragment : DialogFragment() {
                 val utenteRef = db.document((prova.get("refUtente") as DocumentReference).path)
                 utenteRef.get().addOnSuccessListener {
                         result ->
-                    members.add(result.get("first").toString())
+                    members.add(
+                        UtenteSel(
+                            result.get("first").toString(),
+                            utenteRef
+                        )
+                    )
                 }
             }
         }
@@ -75,7 +107,11 @@ class NewDebtFragment : DialogFragment() {
             val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
             val binding = inflater.inflate(R.layout.new_debt, null)
             binding.findViewById<AutoCompleteTextView>(R.id.menu_debt).setAdapter(adapter)
+            var selector = binding.findViewById<AutoCompleteTextView>(R.id.menu_debt)
 
+            selector.setOnItemClickListener { parent, view, position, id ->
+                selUser = adapter.getItem(position)!!
+            }
             // Inflate and set the layout for the dialog
             // Pass null as the parent view because its going in the dialog layout
             builder.setView(binding)
@@ -83,6 +119,9 @@ class NewDebtFragment : DialogFragment() {
                 .setPositiveButton("confirm",
                     DialogInterface.OnClickListener { dialog, id ->
                         // sign in the user ...
+                        var inputDebt = binding.findViewById<TextInputEditText>(R.id.newdebt)
+                        var debt = inputDebt.text.toString().toFloat()
+                        updateMember(selUser.UserRef,debt)
                         Toast.makeText(this.context, "ciao", Toast.LENGTH_SHORT).show()
                     })
                 .setNegativeButton("cancel",
@@ -92,5 +131,11 @@ class NewDebtFragment : DialogFragment() {
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
 
+    }
+}
+class DbDebitoNew(var daPagare: Float, var pagato: Float, var refUtente: DocumentReference)
+class UtenteSel(var name: String,var UserRef: DocumentReference){
+    override fun toString(): String {
+        return name
     }
 }

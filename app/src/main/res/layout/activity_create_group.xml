@@ -48,7 +48,7 @@
         app:startIconDrawable="@drawable/outline_search_grey_800_24dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/newdebt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
