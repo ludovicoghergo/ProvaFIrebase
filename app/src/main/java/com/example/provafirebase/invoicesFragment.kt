@@ -67,6 +67,7 @@ class invoicesFragment : Fragment() {
 
         val newPayment = view_new.findViewById<TextView>(R.id.newPay_txt)
         val newDebt = view_new.findViewById<TextView>(R.id.newDebt_txt)
+        val newSharedInvoice = view_new.findViewById<TextView>(R.id.sharedInvoice_txt)
 
         newDebt.setOnClickListener(){
             val newFragment = NewDebtFragment()
@@ -76,6 +77,12 @@ class invoicesFragment : Fragment() {
 
         newPayment.setOnClickListener(){
             val newFragment = NewPaymentFragment()
+            newFragment.arguments = this.arguments
+            getFragmentManager()?.let { newFragment.show(it, "change") }
+        }
+
+        newSharedInvoice.setOnClickListener(){
+            val newFragment = NewSharedInvoice()
             newFragment.arguments = this.arguments
             getFragmentManager()?.let { newFragment.show(it, "change") }
         }
