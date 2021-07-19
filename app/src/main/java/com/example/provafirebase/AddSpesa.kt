@@ -57,7 +57,7 @@ class AddSpesa : AppCompatActivity() {
         var debiti = ArrayList<DbDebito>()
         var dbSpesa = DbSpesa(nomeSpesa, totale, debiti)
         for(utente in listaSpesa){
-            var debito= DbDebito(utente.spesa, 0F, utente.id)
+            var debito= DbDebito((utente.perc*totale)/100, 0F, utente.id)
             debiti.add(debito)
         }
         var db = FirebaseFirestore.getInstance()
@@ -101,7 +101,7 @@ class AddSpesa : AppCompatActivity() {
                             result2.get("first").toString(),
                             result2.get("last").toString(),
                             result2.reference,
-                            0F
+                            0
                         )
                         listaMemb.add(nuovo)
                         viewAdapter = AddSpesaAdapter(listaMemb)

@@ -38,22 +38,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun openMyNotifications(view: View){
+    public fun openMyNotifications(view: View){
         val intent = Intent(this, NotificationActivity::class.java)
         startActivity(intent)
     }
 
-    fun openMyAccount(view: View){
+    public fun openMyAccount(view: View){
         val intent = Intent(this, AccountActivity::class.java)
         startActivity(intent)
     }
 
-    fun openMyGroups(view: View){
+    public fun openMyGroups(view: View){
         val intent = Intent(this, GroupsActivity::class.java)
         startActivity(intent)
     }
 
-    fun logOut(view: View){
+    public fun logOut(view: View){
             mGoogleSignInClient.signOut().addOnCompleteListener {
                 val intent= Intent(this, LoginScreen::class.java)
                 startActivity(intent)

@@ -69,7 +69,9 @@ class CreateGroupActivity : AppCompatActivity() {
         var filter = usersRef.whereEqualTo("email", querytext.text.toString())
         try {
             filter.get().addOnSuccessListener { result ->
+                var found :Boolean = false
                 for (document in result) {
+                    found = true
                     var docRef = document.reference
                     var nuovo = DummyList.Utente(
                         document.data.get("first").toString(),
@@ -79,13 +81,18 @@ class CreateGroupActivity : AppCompatActivity() {
                     listaMemb.add(nuovo)
                     listaRef.add(docRef)
                 }
+                if(found){
+                    viewAdapter = UserViewAdapter(listaMemb)
 
-                viewAdapter = UserViewAdapter(listaMemb)
-
-                view_user.apply {
-                    layoutManager = viewManager
-                    adapter = viewAdapter
+                    view_user.apply {
+                        layoutManager = viewManager
+                        adapter = viewAdapter
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), "User not found", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         } catch (e: FirebaseException) {
             Toast.makeText(getApplicationContext(), "Errore utente", Toast.LENGTH_SHORT).show();
@@ -134,7 +141,7 @@ class CreateGroupActivity : AppCompatActivity() {
                 .addOnFailureListener { e -> Log.w("ERROR", "Error adding document", e) }
 
         }
-
+        finish()
 
 
     }

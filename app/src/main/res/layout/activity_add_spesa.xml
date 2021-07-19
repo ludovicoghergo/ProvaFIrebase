@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
-        android:hint="Invoice's name"
+        android:hint="Total Invoice"
         app:layout_constraintStart_toEndOf="@+id/outlinedTextField2"
         app:layout_constraintTop_toTopOf="parent">
 

@@ -34,7 +34,35 @@ class GroupsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
+    public fun refreshRecicler(){
+        viewManager = LinearLayoutManager(this.applicationContext)
+        viewAdapter = GroupViewAdapter(loadGroups())
+        view_groups.apply {
+            layoutManager = viewManager
+            adapter = viewAdapter
+        }
+    }
+
     fun newGroup(view: View){
+        val intent = Intent(this, GroupsActivity::class.java)
+        startActivity(intent)
+    }
+
+    public fun openMyNotifications(view: View){
+        val intent = Intent(this, NotificationActivity::class.java)
+        startActivity(intent)
+    }
+
+    public fun openMyAccount(view: View){
+        val intent = Intent(this, AccountActivity::class.java)
+        startActivity(intent)
+    }
+
+    public fun openMyGroups(view: View){
         val intent = Intent(this, GroupsActivity::class.java)
         startActivity(intent)
     }

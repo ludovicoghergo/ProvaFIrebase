@@ -1,7 +1,9 @@
 package com.example.provafirebase
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.DocumentReference
@@ -27,6 +29,21 @@ class NotificationActivity : AppCompatActivity() {
         }
     }
 
+    public fun openMyNotifications(view: View){
+        val intent = Intent(this, NotificationActivity::class.java)
+        startActivity(intent)
+    }
+
+    public fun openMyAccount(view: View){
+        val intent = Intent(this, AccountActivity::class.java)
+        startActivity(intent)
+    }
+
+    public fun openMyGroups(view: View){
+        val intent = Intent(this, GroupsActivity::class.java)
+        startActivity(intent)
+    }
+    
     private fun loadNotifiche(): ArrayList<Notifica> {
         var notifiche = ArrayList<Notifica>()
         var db = FirebaseFirestore.getInstance()

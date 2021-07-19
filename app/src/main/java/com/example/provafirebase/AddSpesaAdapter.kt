@@ -44,13 +44,11 @@ class AddSpesaAdapter(private var mValues: List<UtenteConSpesa>) :
                 override fun afterTextChanged(s: Editable?) {
                     Log.d("c","b")
                     try {
-                        mValues[position].spesa=  userInvoice.text.toString().toFloat()
+                        mValues[position].perc =  userInvoice.text.toString().toInt()
                     }catch (e: Exception){
                         Log.d("errore null", "errore null")
                     }
-                    for (utente in mValues){
-                        Log.d("lista","${utente.spesa}")
-                    }
+
 
 
                 }
@@ -69,10 +67,10 @@ class AddSpesaAdapter(private var mValues: List<UtenteConSpesa>) :
     }
 
     private fun listener(utenteConSpesa: AddSpesaAdapter.UtenteConSpesa) {
-        Log.d("a","${utenteConSpesa.spesa}")
+        Log.d("a","${utenteConSpesa.perc}")
     }
 
-    class UtenteConSpesa(var firstName: String, var lastName: String, var id: DocumentReference , var spesa: Float)
+    class UtenteConSpesa(var firstName: String, var lastName: String, var id: DocumentReference , var perc: Int)
 
 
 }

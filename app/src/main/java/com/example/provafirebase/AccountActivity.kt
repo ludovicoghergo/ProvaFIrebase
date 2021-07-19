@@ -1,7 +1,9 @@
 package com.example.provafirebase
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.FirebaseException
@@ -58,6 +60,21 @@ class AccountActivity : AppCompatActivity() {
 
     }
 
+
+    public fun openMyNotifications(view: View){
+        val intent = Intent(this, NotificationActivity::class.java)
+        startActivity(intent)
+    }
+
+    public fun openMyAccount(view: View){
+        val intent = Intent(this, AccountActivity::class.java)
+        startActivity(intent)
+    }
+
+    public fun openMyGroups(view: View){
+        val intent = Intent(this, GroupsActivity::class.java)
+        startActivity(intent)
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

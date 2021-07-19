@@ -1,7 +1,7 @@
 package com.example.provafirebase
 
+import android.R.attr.data
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +10,11 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provafirebase.singleGroup.SingleGroupActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_groups.*
 import kotlinx.android.synthetic.main.componente_lista_gruppi.view.*
+
 
 class GroupViewAdapter(private var mValues: ArrayList<DummyList.Group>) :
     RecyclerView.Adapter<GroupViewAdapter.ViewHolder>() {
@@ -31,6 +31,11 @@ class GroupViewAdapter(private var mValues: ArrayList<DummyList.Group>) :
         return ViewHolder(view)
     }
 
+    public fun swap(datas: ArrayList<DummyList.Group>) {
+        mValues.clear()
+        mValues.addAll(datas)
+        notifyDataSetChanged()
+    }
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mView.apply {
