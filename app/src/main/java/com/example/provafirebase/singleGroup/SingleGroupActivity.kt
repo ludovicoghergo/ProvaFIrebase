@@ -21,7 +21,7 @@ class SingleGroupActivity : AppCompatActivity() {
     private lateinit var viewManagerUtenti: RecyclerView.LayoutManager
     private lateinit var viewAdapterSpese: SingleGroupSpesaAdapter
     private lateinit var viewManagerSpese: RecyclerView.LayoutManager
-    private var gruppo = ""
+    private var gruppo = "groups/XdPWHr2mZmoTMg9txkEH"
 
 
     var membriData = ArrayList<Utente>()
@@ -32,6 +32,7 @@ class SingleGroupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_group)
         supportActionBar?.hide()
+
 
         gruppo = intent.getStringExtra("docref").toString()
 
@@ -133,6 +134,8 @@ class SingleGroupActivity : AppCompatActivity() {
         }
     }
 
+
+
     fun aggiungiSpesa(view: View){
         val intent = Intent(this, AddSpesa::class.java)
         intent.putExtra("docref", gruppo)
@@ -189,6 +192,8 @@ class SingleGroupActivity : AppCompatActivity() {
         }
 
     }
+
+
 }
 class DbSpesa(var nomeSpesa: String, var totale: Float, var debiti: ArrayList<DbDebito>, var id: String)
 class DbDebito(var daPagare: Float, var pagato: Float, var refUtente: DocumentReference)

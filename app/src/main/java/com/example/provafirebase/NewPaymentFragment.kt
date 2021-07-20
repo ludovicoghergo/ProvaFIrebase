@@ -124,7 +124,7 @@ class NewPaymentFragment : DialogFragment() {
                         var inputPayment = binding.findViewById<TextInputEditText>(R.id.new_payment)
                         var debt = inputPayment.text.toString().toFloat()
                         updateMember(selUser.UserRef,debt)
-                        Toast.makeText(this.context, "ciao", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this.context, "pagamento aggiornato", Toast.LENGTH_SHORT).show()
                     })
                 .setNegativeButton("cancel",
                     DialogInterface.OnClickListener { dialog, id ->
