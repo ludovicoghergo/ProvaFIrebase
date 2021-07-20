@@ -47,10 +47,13 @@ class NotificationActivity : AppCompatActivity() {
     private fun loadNotifiche(): ArrayList<Notifica> {
         var notifiche = ArrayList<Notifica>()
         var db = FirebaseFirestore.getInstance()
-        var usersRef = db.collection("users").document(user)
-        usersRef.get().addOnSuccessListener {
+
+        var usersRef = db.collection("users")
+        var email = SavedPreference.getEmail(this)
+        var filter = usersRef.whereEqualTo("email",email)
+        filter.get().addOnSuccessListener {
             document ->
-            var notificheRef = document.get("notifiche") as ArrayList<DocumentReference>
+            var notificheRef = document.documents[0].get("notifiche") as ArrayList<DocumentReference>
             for (notifica in notificheRef){
                 db.document(notifica.path).get().addOnSuccessListener{
                     documentNotifica ->
@@ -74,3 +77,4 @@ class NotificationActivity : AppCompatActivity() {
 
 
 }
+

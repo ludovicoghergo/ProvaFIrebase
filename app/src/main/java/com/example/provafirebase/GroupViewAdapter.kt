@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.provafirebase.singleGroup.SingleGroupActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_groups.*
@@ -58,10 +59,17 @@ class GroupViewAdapter(private var mValues: ArrayList<DummyList.Group>) :
                     var db = FirebaseFirestore.getInstance()
                     var email = SavedPreference.getEmail(holder.mView.context)
                     var filter = db.collection("users").whereEqualTo("email", email)
+                    var invoices = ArrayList<DocumentReference>()
 
-                    db.document(mValues[position].docRef.path).delete().addOnSuccessListener {
-                        filter.get().addOnSuccessListener { result ->
-                            for (document in result) {
+                    db.document(mValues[position].docRef.path).get().addOnSuccessListener {
+                        result ->
+                        for(invoice in result["spese"] as ArrayList<DocumentReference>){
+                            db.document(invoice.path).delete()
+                        }
+
+                        db.document(mValues[position].docRef.path).delete().addOnSuccessListener {
+                            filter.get().addOnSuccessListener { result ->
+                                for (document in result) {
                                     document.reference.update(
                                         "groups",
                                         FieldValue.arrayRemove(mValues[position].docRef)
@@ -73,11 +81,16 @@ class GroupViewAdapter(private var mValues: ArrayList<DummyList.Group>) :
                                     ).show()
 
 
+                                }
+
                             }
 
                         }
 
                     }
+
+
+
                 }
                 .show()
         }

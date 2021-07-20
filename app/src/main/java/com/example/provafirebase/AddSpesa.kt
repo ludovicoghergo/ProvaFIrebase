@@ -77,6 +77,7 @@ class AddSpesa : AppCompatActivity() {
                     }
                 }
         }
+        finish()
 
     }
 
