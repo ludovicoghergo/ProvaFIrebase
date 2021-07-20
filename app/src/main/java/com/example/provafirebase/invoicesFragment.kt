@@ -70,21 +70,39 @@ class invoicesFragment : Fragment() {
         val newSharedInvoice = view_new.findViewById<TextView>(R.id.sharedInvoice_txt)
 
         newDebt.setOnClickListener(){
-            val newFragment = NewDebtFragment()
-            newFragment.arguments = this.arguments
-            getFragmentManager()?.let { newFragment.show(it, "change") }
+            spesa = arguments?.get("param1").toString()
+            if(spesa == "null"){
+                Toast.makeText(context, "You should select a invoice first!", Toast.LENGTH_SHORT).show();
+            }else{
+                val newFragment = NewDebtFragment()
+                newFragment.arguments = this.arguments
+                getFragmentManager()?.let { newFragment.show(it, "change") }
+            }
+
         }
 
         newPayment.setOnClickListener(){
-            val newFragment = NewPaymentFragment()
-            newFragment.arguments = this.arguments
-            getFragmentManager()?.let { newFragment.show(it, "change") }
+            spesa = arguments?.get("param1").toString()
+            if(spesa == "null"){
+                Toast.makeText(context, "You should select a invoice first!", Toast.LENGTH_SHORT).show();
+            }else{
+                val newFragment = NewPaymentFragment()
+                newFragment.arguments = this.arguments
+                getFragmentManager()?.let { newFragment.show(it, "change") }
+            }
+
         }
 
         newSharedInvoice.setOnClickListener(){
-            val newFragment = NewSharedInvoice()
-            newFragment.arguments = this.arguments
-            getFragmentManager()?.let { newFragment.show(it, "change") }
+            spesa = arguments?.get("param1").toString()
+            if(spesa == "null"){
+                Toast.makeText(context, "You should select a invoice first!", Toast.LENGTH_SHORT).show();
+            }else{
+                val newFragment = NewSharedInvoice()
+                newFragment.arguments = this.arguments
+                getFragmentManager()?.let { newFragment.show(it, "change") }
+            }
+
         }
 
         if(arguments != null) {

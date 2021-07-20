@@ -70,6 +70,7 @@
             android:layout_marginBottom="32dp"
             android:gravity="center_vertical"
             android:text="new Debt"
+            android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/newPay_txt" />
 
@@ -82,6 +83,7 @@
             android:layout_marginBottom="32dp"
             android:gravity="center_vertical"
             android:text="new Payment"
+            android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView14" />
 
@@ -93,6 +95,7 @@
             android:layout_marginBottom="32dp"
             android:gravity="center_vertical"
             android:text="Shared Invoice"
+            android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

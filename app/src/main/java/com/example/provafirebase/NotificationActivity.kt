@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.DocumentReference
@@ -30,8 +31,7 @@ class NotificationActivity : AppCompatActivity() {
     }
 
     public fun openMyNotifications(view: View){
-        val intent = Intent(this, NotificationActivity::class.java)
-        startActivity(intent)
+        Toast.makeText(getApplicationContext(), "You're already here", Toast.LENGTH_SHORT).show();
     }
 
     public fun openMyAccount(view: View){

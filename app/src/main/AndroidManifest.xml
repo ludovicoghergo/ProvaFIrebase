@@ -4,17 +4,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/bdsplit"
+        android:label="BuddySplit"
+        android:roundIcon="@mipmap/bdsplit_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProvaFIrebase">
         <activity android:name=".modificaspesa.ModificaSpesa"></activity>
         <activity android:name=".singleGroup.SingleSpesa" />
-        <activity
-            android:name=".SpecificGroupActivity"
-            android:label="@string/title_activity_specific_group"
-            android:theme="@style/Theme.ProvaFIrebase.NoActionBar" />
         <activity android:name=".singleGroup.SingleGroupActivity" />
         <activity android:name=".AddSpesa" />
         <activity android:name=".CreateGroupActivity" />

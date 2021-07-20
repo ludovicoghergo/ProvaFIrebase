@@ -72,7 +72,6 @@ class NewDebtFragment : DialogFragment() {
     fun getMembers(): ArrayList<UtenteSel>{
         val db = FirebaseFirestore.getInstance()
         val members = ArrayList<UtenteSel>()
-        spesa = arguments?.get("param1").toString()
 
         val dbSpesaRef = db.document("spese/"+spesa)
         dbSpesaRef.get().addOnSuccessListener {
@@ -100,8 +99,8 @@ class NewDebtFragment : DialogFragment() {
             val builder = AlertDialog.Builder(it)
             // Get the layout inflater
             val inflater = requireActivity().layoutInflater;
-
             val items = getMembers()
+
             val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
             val binding = inflater.inflate(R.layout.new_debt, null)
             binding.findViewById<AutoCompleteTextView>(R.id.menu_debt).setAdapter(adapter)

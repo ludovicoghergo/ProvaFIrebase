@@ -84,8 +84,8 @@ class AccountActivity : AppCompatActivity() {
     }
 
     public fun openMyAccount(view: View){
-        val intent = Intent(this, AccountActivity::class.java)
-        startActivity(intent)
+        Toast.makeText(getApplicationContext(), "You're already here", Toast.LENGTH_SHORT).show();
+
     }
 
     public fun openMyGroups(view: View){

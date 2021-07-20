@@ -276,6 +276,7 @@
         android:layout_marginBottom="50dp"
         android:gravity="center_vertical"
         android:text="Log out"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/bottomAppBar4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

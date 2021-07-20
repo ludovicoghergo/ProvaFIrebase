@@ -63,8 +63,8 @@ class GroupsActivity : AppCompatActivity() {
     }
 
     public fun openMyGroups(view: View){
-        val intent = Intent(this, GroupsActivity::class.java)
-        startActivity(intent)
+        Toast.makeText(getApplicationContext(), "You're already here", Toast.LENGTH_SHORT).show();
+
     }
 
     fun loadGroups(): ArrayList<DummyList.Group> {
