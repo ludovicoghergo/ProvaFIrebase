@@ -31,10 +31,8 @@ class SingleGroupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_group)
-        val actionbar = supportActionBar
-        actionbar!!.title = "Nome Gruppo"
-        actionbar.setDisplayHomeAsUpEnabled(true)
-        actionbar.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.hide()
+
         gruppo = intent.getStringExtra("docref").toString()
 
         viewManagerUtenti = LinearLayoutManager(this.applicationContext)

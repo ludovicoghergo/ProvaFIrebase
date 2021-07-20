@@ -153,10 +153,10 @@
         android:id="@+id/view"
         android:layout_width="218dp"
         android:layout_height="38dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="124dp"
         android:onClick="openCreateGroups"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_groups" />
 

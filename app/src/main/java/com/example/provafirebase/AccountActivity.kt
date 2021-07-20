@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.FirebaseException
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -13,10 +16,16 @@ import org.w3c.dom.Text
 import java.util.ArrayList
 
 class AccountActivity : AppCompatActivity() {
+    lateinit var mGoogleSignInClient: GoogleSignInClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account)
-
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("191928539014-jcu4ojgc28lkske4gkbigds54q0b1k06.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this,gso)
         supportActionBar?.hide()
 
         val name: TextView = findViewById(R.id.userName)
@@ -60,6 +69,14 @@ class AccountActivity : AppCompatActivity() {
 
     }
 
+
+    public fun logOut(view: View){
+        mGoogleSignInClient.signOut().addOnCompleteListener {
+            val intent= Intent(this, LoginScreen::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
 
     public fun openMyNotifications(view: View){
         val intent = Intent(this, NotificationActivity::class.java)

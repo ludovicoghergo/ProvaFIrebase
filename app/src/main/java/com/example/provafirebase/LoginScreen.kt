@@ -87,17 +87,31 @@ class LoginScreen : AppCompatActivity() {
         val credential= GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task->
             if(task.isSuccessful) {
-                val user: MutableMap<String, Any> = HashMap()
-                user["first"] = account.displayName.toString()
-                user["last"] = account.familyName.toString()
-                user["email"] = account.email.toString()
-                user["groups"] = ArrayList<DocumentReference>()
-                user["notifiche"] = ArrayList<DocumentReference>()
 
-                db.collection("users")
-                        .add(user)
-                        .addOnSuccessListener {}
-                        .addOnFailureListener { e -> Log.w("ERROR", "Error adding document", e) }
+                var usersRef = db.collection("users")
+                var filter = usersRef.whereEqualTo("email",account.email.toString())
+                var found = false
+                filter.get().addOnSuccessListener {
+                        result ->
+                    for(document in result) {
+                        found = true
+                    }
+                    if(!found){
+                        val user: MutableMap<String, Any> = HashMap()
+                        user["first"] = account.displayName.toString()
+                        user["last"] = account.familyName.toString()
+                        user["email"] = account.email.toString()
+                        user["groups"] = ArrayList<DocumentReference>()
+                        user["notifiche"] = ArrayList<DocumentReference>()
+                        db.collection("users")
+                            .add(user)
+                            .addOnSuccessListener {}
+                            .addOnFailureListener { e -> Log.w("ERROR", "Error adding document", e) }
+                    }
+                }
+
+
+
 
                 SavedPreference.setEmail(this, account.email.toString())
                 SavedPreference.setUsername(this, account.displayName.toString())

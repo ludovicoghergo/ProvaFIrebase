@@ -248,4 +248,36 @@
 
     </androidx.cardview.widget.CardView>
 
+    <View
+        android:id="@+id/view3"
+        android:layout_width="122dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="36dp"
+        android:onClick="logOut"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar4"
+        app:layout_constraintEnd_toStartOf="@+id/textView12"
+        app:srcCompat="@drawable/baseline_exit_to_app_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center_vertical"
+        android:text="Log out"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
